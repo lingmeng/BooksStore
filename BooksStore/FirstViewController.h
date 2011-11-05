@@ -9,12 +9,17 @@
 #import <UIKit/UIKit.h>
 
 #import "BaseViewController.h"
-@interface FirstViewController : BaseViewController{
+#import "BaseParamUtil.h"
+@interface FirstViewController : BaseViewController<UIScrollViewDelegate>{
     NSString *documentsBookPath;
 	NSString *bundleBookPath;
-   }
+    UIScrollView *scrollView;
+
+}
+
 -(IBAction)startme:(id)sender;
 -(IBAction)clickcategorys:(id)sender;
 @property (nonatomic, retain) NSString *documentsBookPath;
+@property (nonatomic, retain) IBOutlet UIScrollView  *scrollView;
 @property (nonatomic, retain) NSString *bundleBookPath;
 @end

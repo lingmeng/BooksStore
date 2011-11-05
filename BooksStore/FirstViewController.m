@@ -9,7 +9,7 @@
 #import "FirstViewController.h"
 
 @implementation FirstViewController
-@synthesize documentsBookPath,bundleBookPath;
+@synthesize documentsBookPath,bundleBookPath,scrollView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,58 +26,114 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)setHotFlag:(int)value atView:(UIView *)view withImagePath:(NSString *)hotImagePath{
+    float x = (value%4)*(MagazineViewWidth+MagazineViewXGap)+MagazineViewToTopLeft+MagazineViewWidth-HotFlagWidth/2;//   40 第一个图片和最左边的距离
+    
+    float y = floor(value/4)*(MagazineViewHeight+MagazineViewYGap)+MagazineViewToTopTop-HotFlagHeight/2;
+    UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(x, y, HotFlagWidth, HotFlagHeight)];
+    [image setImage:[UIImage imageWithContentsOfFile:hotImagePath]];
+    [view insertSubview:image aboveSubview:scrollView];
+    
+}
+
 -(void)loadMagezines{
+    
+   NSString *fileDirectoryPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"testpath1"]; 
+    
     NSArray* imageNames = [NSArray arrayWithObjects:
-                           
-                           @"ico_mobile.png",
-                           
-                           @"ico_idcard.png",
-                           
-                           @"ico_postcode.png",
-                           
-                           @"ico_flight.png",
-                           
-                           @"ico_translate.png",
-                           
-                           @"ico_phone.png",
-                           
-                           @"ico_car.png",
-                           
-                           @"ico_health.png",
-                           
-                           @"ico_bjxm.png", nil];
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"建筑师.png"], 
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"建筑实录.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"日本建筑.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"新建筑.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"世界建筑导报.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"建筑师.png"], 
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"建筑实录.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"日本建筑.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"新建筑.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"世界建筑导报.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"建筑师.png"], 
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"建筑实录.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"日本建筑.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"新建筑.png"],
+                           [fileDirectoryPath 
+                            stringByAppendingPathComponent:@"世界建筑导报.png"],
+                          nil];
+    int size=[imageNames count];
+    NSString *hotImagePath=[fileDirectoryPath 
+                           stringByAppendingPathComponent:@"热门期刊标记.png"];
     
     UIButton *Btn;
-    
-    for (int i=0; i<9; i++) {
+    UITextView *uiTextView;
+    for (int i=0; i<size; i++) {
         
         CGRect frame;
+        CGRect textFrame; 
         
         Btn = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
         
-        [Btn setImage:[UIImage imageNamed:[imageNames objectAtIndex: i]] forState:UIControlStateNormal];//设置按钮图片
+        [Btn setImage:[UIImage imageWithContentsOfFile:[imageNames objectAtIndex: i]] forState:UIControlStateNormal];//设置按钮图片
         
         Btn.tag = i;
         
-        frame.size.width = 59;//设置按钮坐标及大小MagezineViewWidth
+        frame.size.width = MagazineViewWidth;//设置按钮坐标及大小MagezineViewWidth 137
         
-        frame.size.height = 75;//MagezineViewHeight
+        frame.size.height = MagazineViewHeight;//MagezineViewHeight  183
         
-        frame.origin.x = (i%4)*(59+32)+40;//32左右艰巨  24 上下艰巨   40 第一个图片和最左边的距离 以及和最上面的距离
+        textFrame.size.width=TextWidth;
+        textFrame.size.height=TextHeight;
         
-        frame.origin.y = floor(i/4)*(75+24)+40;
+       
+        frame.origin.x = (i%4)*(MagazineViewWidth+MagazineViewXGap)
+        +MagazineViewToTopLeft;
+        
+        frame.origin.y = floor(i/4)*(MagazineViewHeight+MagazineViewYGap)
+        +MagazineViewToTopTop;
+        
+        textFrame.origin.x =frame.origin.x;
+        
+        textFrame.origin.y = frame.origin.y+MagazineViewHeight+TextToMagazineGap;
+        
         
         [Btn setFrame:frame];
         
         [Btn setBackgroundColor:[UIColor clearColor]];
         
         [Btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:Btn];
-        
+       
+        [scrollView addSubview:Btn];
+        //if (i==7) {
+           
+       // }
         [Btn release];
+       uiTextView=[[UITextView alloc]initWithFrame:textFrame];
+        [uiTextView insertText:@"世界导报 1期"];
+        uiTextView.editable=false;
+          [scrollView addSubview:uiTextView];
         
     }
+    [self setHotFlag:7 atView:scrollView withImagePath:hotImagePath];
+    [self setHotFlag:9 atView:scrollView withImagePath:hotImagePath];
+    [self setHotFlag:12 atView:scrollView withImagePath:hotImagePath];
+    
+    int mainfloor=size/4;
+    int ifaddone=size%4==0?0:1;
+    int height=(mainfloor+ifaddone)*(MagazineViewHeight+MagazineViewYGap)+MagazineViewYGap;
+    [scrollView setContentSize:CGSizeMake(844, height)];
+    [scrollView setBackgroundColor:[UIColor whiteColor]];
 }
 -(IBAction)clickcategorys:(id)sender{
 
@@ -101,18 +157,15 @@
     
 }
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void)writeToFileWithMagazineId:(NSString *)magazineid{
     //对于错误信息
     NSError *error;
     // 创建文件管理器
     NSFileManager *fileMgr = [NSFileManager defaultManager];
-   
+    
     NSString *fileDirectoryPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"testpath1"];
     [[NSFileManager defaultManager]   createDirectoryAtPath:fileDirectoryPath  withIntermediateDirectories:YES attributes:nil error:&error ];
-  
+    
     
     NSString *filePath= [fileDirectoryPath 
                          stringByAppendingPathComponent:@"file3.txt"];
@@ -123,6 +176,13 @@
     //显示文件目录的内容
     NSLog(@"Documentsdirectory: %@",[fileMgr contentsOfDirectoryAtPath:filePath error:&error]);
     
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self loadMagezines];
 }
 
 
