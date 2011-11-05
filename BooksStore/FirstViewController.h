@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
-
+#import "BaseViewController.h"
+@interface FirstViewController : BaseViewController{
+    NSString *documentsBookPath;
+	NSString *bundleBookPath;
+   }
+-(IBAction)startme:(id)sender;
+-(IBAction)clickcategorys:(id)sender;
+@property (nonatomic, retain) NSString *documentsBookPath;
+@property (nonatomic, retain) NSString *bundleBookPath;
 @end
