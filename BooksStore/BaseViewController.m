@@ -31,9 +31,10 @@
 {  
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:1];
-    
+    NSLog(@"count: %d",[self.tabBarController.view.subviews count]);
     for(UIView *view in self.tabBarController.view.subviews)
     {
+       // view.backgroundColor=[UIColor redColor];
         if([view isKindOfClass:[UITabBar class]])
         {
             if (hidden) {
@@ -52,6 +53,7 @@
                 [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, 768-49)];
             }
         }
+        
     }
     [UIView commitAnimations];
 }

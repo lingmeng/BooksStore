@@ -35,7 +35,7 @@
     
     self.tabBarController = [[UITabBarController alloc] init];
     [self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
-    [self.tabBarController.tabBar setAlpha:0.5];
+    [self.tabBarController.tabBar setAlpha:0.8];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5,nil];
     
     self.window.rootViewController = self.tabBarController;

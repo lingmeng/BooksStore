@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GDataXMLNode.h"
-#define MagezineViewWidth  12.0
-#define MagezineViewHeight 12.0
-#define MagezineViewGap   12.0
+#import "BaseParamUtil.h"
+
 @interface BaseViewController : UIViewController
 
 -(void) hideBar;
