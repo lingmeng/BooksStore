@@ -19,8 +19,17 @@
 		86224EC41462D6090067DD02 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86224EC31462D6090067DD02 /* SecondViewController.m */; };
 		86224EC61462D6090067DD02 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 86224EC51462D6090067DD02 /* second.png */; };
 		86224EC81462D6090067DD02 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86224EC71462D6090067DD02 /* second@2x.png */; };
-		86224ECB1462D60A0067DD02 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86224EC91462D60A0067DD02 /* FirstViewController.xib */; };
 		86224ECE1462D60A0067DD02 /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86224ECC1462D60A0067DD02 /* SecondViewController.xib */; };
+		86224ED81462D63C0067DD02 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86224ED61462D63C0067DD02 /* AboutUsViewController.m */; };
+		86224ED91462D63C0067DD02 /* AboutUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86224ED71462D63C0067DD02 /* AboutUsViewController.xib */; };
+		86224EDC1462D6490067DD02 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86224EDB1462D6490067DD02 /* BaseViewController.m */; };
+		86224EE31462D6650067DD02 /* MemberCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86224EDE1462D6650067DD02 /* MemberCenterViewController.m */; };
+		86224EE41462D6650067DD02 /* MemberCenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86224EDF1462D6650067DD02 /* MemberCenterViewController.xib */; };
+		86224EE51462D6650067DD02 /* ReadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86224EE11462D6650067DD02 /* ReadController.m */; };
+		86224EE61462D6650067DD02 /* ReadController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86224EE21462D6650067DD02 /* ReadController.xib */; };
+		86224EEA1462D7030067DD02 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 86224EE91462D7030067DD02 /* GDataXMLNode.m */; };
+		86224EEE1462D7AB0067DD02 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86224EED1462D7AB0067DD02 /* FirstViewController.xib */; };
+		86224EF41462D9130067DD02 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 86224EF31462D9130067DD02 /* libxml2.2.7.3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,22 +37,36 @@
 		86224EA91462D6090067DD02 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86224EAB1462D6090067DD02 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		86224EAD1462D6090067DD02 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		86224EB11462D6090067DD02 /* BooksStore-Info.plist */ = {isa = PBXFileReference; path = "BooksStore-Info.plist"; sourceTree = "<group>"; };
+		86224EB11462D6090067DD02 /* BooksStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BooksStore-Info.plist"; sourceTree = "<group>"; };
 		86224EB31462D6090067DD02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		86224EB51462D6090067DD02 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		86224EB71462D6090067DD02 /* BooksStore-Prefix.pch */ = {isa = PBXFileReference; path = "BooksStore-Prefix.pch"; sourceTree = "<group>"; };
-		86224EB81462D6090067DD02 /* BooksStoreAppDelegate.h */ = {isa = PBXFileReference; path = BooksStoreAppDelegate.h; sourceTree = "<group>"; };
+		86224EB71462D6090067DD02 /* BooksStore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BooksStore-Prefix.pch"; sourceTree = "<group>"; };
+		86224EB81462D6090067DD02 /* BooksStoreAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BooksStoreAppDelegate.h; sourceTree = "<group>"; };
 		86224EB91462D6090067DD02 /* BooksStoreAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BooksStoreAppDelegate.m; sourceTree = "<group>"; };
-		86224EBB1462D6090067DD02 /* FirstViewController.h */ = {isa = PBXFileReference; path = FirstViewController.h; sourceTree = "<group>"; };
+		86224EBB1462D6090067DD02 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		86224EBC1462D6090067DD02 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		86224EBE1462D6090067DD02 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		86224EC01462D6090067DD02 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		86224EC21462D6090067DD02 /* SecondViewController.h */ = {isa = PBXFileReference; path = SecondViewController.h; sourceTree = "<group>"; };
+		86224EC21462D6090067DD02 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		86224EC31462D6090067DD02 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		86224EC51462D6090067DD02 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		86224EC71462D6090067DD02 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		86224ECA1462D60A0067DD02 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
 		86224ECD1462D60A0067DD02 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
+		86224ED51462D63C0067DD02 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		86224ED61462D63C0067DD02 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		86224ED71462D63C0067DD02 /* AboutUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutUsViewController.xib; sourceTree = "<group>"; };
+		86224EDA1462D6490067DD02 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		86224EDB1462D6490067DD02 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		86224EDD1462D6650067DD02 /* MemberCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberCenterViewController.h; sourceTree = "<group>"; };
+		86224EDE1462D6650067DD02 /* MemberCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberCenterViewController.m; sourceTree = "<group>"; };
+		86224EDF1462D6650067DD02 /* MemberCenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MemberCenterViewController.xib; sourceTree = "<group>"; };
+		86224EE01462D6650067DD02 /* ReadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadController.h; sourceTree = "<group>"; };
+		86224EE11462D6650067DD02 /* ReadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadController.m; sourceTree = "<group>"; };
+		86224EE21462D6650067DD02 /* ReadController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReadController.xib; sourceTree = "<group>"; };
+		86224EE81462D7030067DD02 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		86224EE91462D7030067DD02 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		86224EED1462D7AB0067DD02 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		86224EF31462D9130067DD02 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86224EF41462D9130067DD02 /* libxml2.2.7.3.dylib in Frameworks */,
 				86224EAA1462D6090067DD02 /* UIKit.framework in Frameworks */,
 				86224EAC1462D6090067DD02 /* Foundation.framework in Frameworks */,
 				86224EAE1462D6090067DD02 /* CoreGraphics.framework in Frameworks */,
@@ -63,6 +87,7 @@
 		86224E9A1462D6090067DD02 = {
 			isa = PBXGroup;
 			children = (
+				86224EF31462D9130067DD02 /* libxml2.2.7.3.dylib */,
 				86224EAF1462D6090067DD02 /* BooksStore */,
 				86224EA81462D6090067DD02 /* Frameworks */,
 				86224EA61462D6090067DD02 /* Products */,
@@ -90,18 +115,14 @@
 		86224EAF1462D6090067DD02 /* BooksStore */ = {
 			isa = PBXGroup;
 			children = (
+				86224EE71462D6F00067DD02 /* xmlparser */,
+				86224ED41462D61D0067DD02 /* viewcontrollers */,
 				86224EB81462D6090067DD02 /* BooksStoreAppDelegate.h */,
 				86224EB91462D6090067DD02 /* BooksStoreAppDelegate.m */,
-				86224EBB1462D6090067DD02 /* FirstViewController.h */,
-				86224EBC1462D6090067DD02 /* FirstViewController.m */,
 				86224EBE1462D6090067DD02 /* first.png */,
 				86224EC01462D6090067DD02 /* first@2x.png */,
-				86224EC21462D6090067DD02 /* SecondViewController.h */,
-				86224EC31462D6090067DD02 /* SecondViewController.m */,
 				86224EC51462D6090067DD02 /* second.png */,
 				86224EC71462D6090067DD02 /* second@2x.png */,
-				86224EC91462D60A0067DD02 /* FirstViewController.xib */,
-				86224ECC1462D60A0067DD02 /* SecondViewController.xib */,
 				86224EB01462D6090067DD02 /* Supporting Files */,
 			);
 			path = BooksStore;
@@ -116,6 +137,39 @@
 				86224EB71462D6090067DD02 /* BooksStore-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86224ED41462D61D0067DD02 /* viewcontrollers */ = {
+			isa = PBXGroup;
+			children = (
+				86224EBB1462D6090067DD02 /* FirstViewController.h */,
+				86224EBC1462D6090067DD02 /* FirstViewController.m */,
+				86224EED1462D7AB0067DD02 /* FirstViewController.xib */,
+				86224EC21462D6090067DD02 /* SecondViewController.h */,
+				86224EC31462D6090067DD02 /* SecondViewController.m */,
+				86224ECC1462D60A0067DD02 /* SecondViewController.xib */,
+				86224EDD1462D6650067DD02 /* MemberCenterViewController.h */,
+				86224EDE1462D6650067DD02 /* MemberCenterViewController.m */,
+				86224EDF1462D6650067DD02 /* MemberCenterViewController.xib */,
+				86224EE01462D6650067DD02 /* ReadController.h */,
+				86224EE11462D6650067DD02 /* ReadController.m */,
+				86224EE21462D6650067DD02 /* ReadController.xib */,
+				86224EDA1462D6490067DD02 /* BaseViewController.h */,
+				86224EDB1462D6490067DD02 /* BaseViewController.m */,
+				86224ED51462D63C0067DD02 /* AboutUsViewController.h */,
+				86224ED61462D63C0067DD02 /* AboutUsViewController.m */,
+				86224ED71462D63C0067DD02 /* AboutUsViewController.xib */,
+			);
+			name = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		86224EE71462D6F00067DD02 /* xmlparser */ = {
+			isa = PBXGroup;
+			children = (
+				86224EE81462D7030067DD02 /* GDataXMLNode.h */,
+				86224EE91462D7030067DD02 /* GDataXMLNode.m */,
+			);
+			name = xmlparser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +197,9 @@
 /* Begin PBXProject section */
 		86224E9C1462D6090067DD02 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 86224E9F1462D6090067DD02 /* Build configuration list for PBXProject "BooksStore" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -170,8 +227,11 @@
 				86224EC11462D6090067DD02 /* first@2x.png in Resources */,
 				86224EC61462D6090067DD02 /* second.png in Resources */,
 				86224EC81462D6090067DD02 /* second@2x.png in Resources */,
-				86224ECB1462D60A0067DD02 /* FirstViewController.xib in Resources */,
 				86224ECE1462D60A0067DD02 /* SecondViewController.xib in Resources */,
+				86224ED91462D63C0067DD02 /* AboutUsViewController.xib in Resources */,
+				86224EE41462D6650067DD02 /* MemberCenterViewController.xib in Resources */,
+				86224EE61462D6650067DD02 /* ReadController.xib in Resources */,
+				86224EEE1462D7AB0067DD02 /* FirstViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +246,11 @@
 				86224EBA1462D6090067DD02 /* BooksStoreAppDelegate.m in Sources */,
 				86224EBD1462D6090067DD02 /* FirstViewController.m in Sources */,
 				86224EC41462D6090067DD02 /* SecondViewController.m in Sources */,
+				86224ED81462D63C0067DD02 /* AboutUsViewController.m in Sources */,
+				86224EDC1462D6490067DD02 /* BaseViewController.m in Sources */,
+				86224EE31462D6650067DD02 /* MemberCenterViewController.m in Sources */,
+				86224EE51462D6650067DD02 /* ReadController.m in Sources */,
+				86224EEA1462D7030067DD02 /* GDataXMLNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,14 +263,6 @@
 				86224EB31462D6090067DD02 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		86224EC91462D60A0067DD02 /* FirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86224ECA1462D60A0067DD02 /* en */,
-			);
-			name = FirstViewController.xib;
 			sourceTree = "<group>";
 		};
 		86224ECC1462D60A0067DD02 /* SecondViewController.xib */ = {
@@ -224,7 +281,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -250,7 +307,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -271,6 +328,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BooksStore/BooksStore-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "BooksStore/BooksStore-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -282,6 +340,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BooksStore/BooksStore-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "BooksStore/BooksStore-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -307,6 +366,7 @@
 				86224ED31462D60A0067DD02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
