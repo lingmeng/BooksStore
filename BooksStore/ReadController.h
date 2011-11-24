@@ -8,6 +8,12 @@
 
 #import "BaseViewController.h"
 
+#import "W_A_M_HomeViewController.h"
+
 @interface ReadController : BaseViewController
+
+@property (nonatomic, retain)W_A_M_HomeViewController *wamhvc;
+
+
 
 @end
