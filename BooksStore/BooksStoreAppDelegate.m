@@ -17,6 +17,9 @@
 #import "MemberCenterViewController.h"
 #import "AboutUsViewController.h"
 
+#import "FavoriteViewController.h"
+
+
 @implementation BooksStoreAppDelegate
 
 @synthesize window = _window;
@@ -25,26 +28,47 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    NSLog(@"%f,%f",self.window.bounds.size.width,self.window.bounds.size.height);
+    //NSLog(@"%f,%f",self.window.bounds.size.width,self.window.bounds.size.height);
     // Override point for customization after application launch.
+    
     UIViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
     UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
     UIViewController *viewController3 = [[ReadController alloc] initWithNibName:@"ReadController" bundle:nil];
-    UIViewController *viewController4 = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
-    UIViewController *viewController5 = [[AboutUsViewController alloc] initWithNibName:@"AboutUsViewController" bundle:nil];
+    UIViewController *viewController4 = [[FavoriteViewController alloc] initWithNibName:@"FavoriteViewController" bundle:nil];
+    UIViewController *viewController5 = [[MemberCenterViewController alloc] initWithNibName:@"MemberCenterViewController" bundle:nil];
+    UIViewController *viewController6 = [[AboutUsViewController alloc] initWithNibName:@"AboutUsViewController" bundle:nil];
     
     self.tabBarController = [[UITabBarController alloc] init];
-    [self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
+    
+    //[self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
+   
     [self.tabBarController.tabBar setAlpha:0.8];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5,nil];
+//    self.tabBarController.tabBar.frame = CGRectMake(0, 748-49, 1024, 49);
+    
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5,viewController6,nil];
     
     self.window.rootViewController = self.tabBarController;
     //self.tabBarController.tabBar.hidden=YES;
-    [self hideTabBar:YES];
+    //[self hideTabBar:YES];
+    
+    
+//    for(UIView *view in self.tabBarController.view.subviews)
+//    {
+//        if ([view isKindOfClass:[UITabBar class]]) {
+//            [view setFrame:CGRectMake(view.frame.origin.x, 768-49, view.frame.size.width, view.frame.size.height)];
+//        }
+//    }
     [self.window setBackgroundColor:[UIColor grayColor]];
     [self.window makeKeyAndVisible];
-    
+    [viewController1 release];
+    [viewController2 release];
+    [viewController3 release];
+    [viewController4 release];
+    [viewController5 release];
+    [viewController6 release];
+    [self.tabBarController release];
     return YES;
+    
 }
 
 - (void) hideTabBar:(BOOL) hidden
@@ -54,20 +78,28 @@
     
     for(UIView *view in self.tabBarController.view.subviews)
     {
+//        NSLog(@"hide TabBar");
         if([view isKindOfClass:[UITabBar class]])
         {
             if (hidden) {
+//                NSLog(@"hide TabBar 111");
                 [view setFrame:CGRectMake(view.frame.origin.x,view.frame.origin.y+49,  view.frame.size.width, view.frame.size.height)];
+//                 NSLog(@"ssssssssssss%f",view.frame.origin.y+49);
             } else {
                 [view setFrame:CGRectMake(view.frame.origin.x,view.frame.origin.y,  view.frame.size.width, view.frame.size.height)];
+//                NSLog(@"aaaaaaaaaaa%f",view.frame.origin.y);
             }
         } 
         else 
         {
             if (hidden) {
+//                NSLog(@"hide TabBar 222");
                 [view setFrame:CGRectMake(view.frame.origin.x,view.frame.origin.y,  view.frame.size.width, view.frame.size.height+49)];
+                
+//                NSLog(@"wwwwwwwwww%f",view.frame.origin.y+49);
             } else {
                 [view setFrame:CGRectMake(view.frame.origin.x,view.frame.origin.y,  view.frame.size.width, view.frame.size.height)];
+//                NSLog(@"qqqqqqqqq%f",view.frame.origin.y);
             }
         }
     }
@@ -113,18 +145,28 @@
      */
 }
 
-/*
+
  // Optional UITabBarControllerDelegate method.
  - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
  {
+     NSLog(@"currentController why index:%d",self.tabBarController.selectedIndex);  
+     UIViewController  *currentController =self.tabBarController.selectedViewController;  
+     NSLog(@"currentController why : %@",currentController);  
+     self.tabBarController.selectedIndex = 0; 
  }
- */
 
-/*
+
+
  // Optional UITabBarControllerDelegate method.
  - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
  {
+     NSLog(@"currentController why why why index:%d",self.tabBarController.selectedIndex);  
+     UIViewController  *currentController =self.tabBarController.selectedViewController;  
+     NSLog(@"currentController why why why : %@",currentController);  
+     self.tabBarController.selectedIndex = 0; 
  }
- */
+
+ 
+
 
 @end
