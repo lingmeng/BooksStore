@@ -149,8 +149,18 @@
 		86224EEA1462D7030067DD02 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 86224EE91462D7030067DD02 /* GDataXMLNode.m */; };
 		86224EEE1462D7AB0067DD02 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86224EED1462D7AB0067DD02 /* FirstViewController.xib */; };
 		86224EF41462D9130067DD02 /* libxml2.2.7.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 86224EF31462D9130067DD02 /* libxml2.2.7.3.dylib */; };
+		86C69E151482777400F0A877 /* TestMagazine.xml in Resources */ = {isa = PBXBuildFile; fileRef = 86C69E141482777400F0A877 /* TestMagazine.xml */; };
+		86E0383F148B10AE00A52278 /* MagazineGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E0383E148B10AE00A52278 /* MagazineGroup.m */; };
+		86E03842148B10C500A52278 /* MagazineListPreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E03841148B10C500A52278 /* MagazineListPreView.m */; };
+		86E03845148B10D400A52278 /* PaidMagazineList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E03844148B10D400A52278 /* PaidMagazineList.m */; };
+		86E03848148B10E900A52278 /* MagazineToArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E03847148B10E900A52278 /* MagazineToArticle.m */; };
+		86E0384B148B110300A52278 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E0384A148B110300A52278 /* Article.m */; };
+		86E0384E148B111600A52278 /* HotPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E0384D148B111600A52278 /* HotPoints.m */; };
+		86E03856148B1DBC00A52278 /* BSysVersion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86E03855148B1DBC00A52278 /* BSysVersion.plist */; };
 		86E8F57D14658B6500E90DB8 /* BaseParamUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F57C14658B6500E90DB8 /* BaseParamUtil.m */; };
 		86E8F58214659C7F00E90DB8 /* BaseUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E8F58114659C7F00E90DB8 /* BaseUIScrollView.m */; };
+		86F37E9E1480A2490046C5E4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F37E9D1480A2490046C5E4 /* CoreData.framework */; };
+		86F37EAA1480A71F0046C5E4 /* storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86F37EA81480A71F0046C5E4 /* storage.xcdatamodeld */; };
 		BF26BA401475DF73001B6BC4 /* 单刊右侧背景.png in Resources */ = {isa = PBXBuildFile; fileRef = BF26BA3B1475DF73001B6BC4 /* 单刊右侧背景.png */; };
 		BF26BA411475DF73001B6BC4 /* 订阅_x711y216.png in Resources */ = {isa = PBXBuildFile; fileRef = BF26BA3C1475DF73001B6BC4 /* 订阅_x711y216.png */; };
 		BF26BA421475DF73001B6BC4 /* 购买_x711y174.png in Resources */ = {isa = PBXBuildFile; fileRef = BF26BA3D1475DF73001B6BC4 /* 购买_x711y174.png */; };
@@ -322,10 +332,26 @@
 		86224EE91462D7030067DD02 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		86224EED1462D7AB0067DD02 /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		86224EF31462D9130067DD02 /* libxml2.2.7.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.7.3.dylib; path = usr/lib/libxml2.2.7.3.dylib; sourceTree = SDKROOT; };
+		86C69E141482777400F0A877 /* TestMagazine.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestMagazine.xml; sourceTree = "<group>"; };
+		86E0383D148B10AE00A52278 /* MagazineGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagazineGroup.h; sourceTree = "<group>"; };
+		86E0383E148B10AE00A52278 /* MagazineGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagazineGroup.m; sourceTree = "<group>"; };
+		86E03840148B10C500A52278 /* MagazineListPreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagazineListPreView.h; sourceTree = "<group>"; };
+		86E03841148B10C500A52278 /* MagazineListPreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagazineListPreView.m; sourceTree = "<group>"; };
+		86E03843148B10D400A52278 /* PaidMagazineList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaidMagazineList.h; sourceTree = "<group>"; };
+		86E03844148B10D400A52278 /* PaidMagazineList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaidMagazineList.m; sourceTree = "<group>"; };
+		86E03846148B10E900A52278 /* MagazineToArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagazineToArticle.h; sourceTree = "<group>"; };
+		86E03847148B10E900A52278 /* MagazineToArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagazineToArticle.m; sourceTree = "<group>"; };
+		86E03849148B110300A52278 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		86E0384A148B110300A52278 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
+		86E0384C148B111600A52278 /* HotPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotPoints.h; sourceTree = "<group>"; };
+		86E0384D148B111600A52278 /* HotPoints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotPoints.m; sourceTree = "<group>"; };
+		86E03855148B1DBC00A52278 /* BSysVersion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BSysVersion.plist; sourceTree = "<group>"; };
 		86E8F57B14658B6500E90DB8 /* BaseParamUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseParamUtil.h; sourceTree = "<group>"; };
 		86E8F57C14658B6500E90DB8 /* BaseParamUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseParamUtil.m; sourceTree = "<group>"; };
 		86E8F58014659C7F00E90DB8 /* BaseUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseUIScrollView.h; sourceTree = "<group>"; };
 		86E8F58114659C7F00E90DB8 /* BaseUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseUIScrollView.m; sourceTree = "<group>"; };
+		86F37E9D1480A2490046C5E4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		86F37EA91480A71F0046C5E4 /* storage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = storage.xcdatamodel; sourceTree = "<group>"; };
 		BF26BA3B1475DF73001B6BC4 /* 单刊右侧背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "单刊右侧背景.png"; path = "../../单刊右侧背景.png"; sourceTree = "<group>"; };
 		BF26BA3C1475DF73001B6BC4 /* 订阅_x711y216.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "订阅_x711y216.png"; path = "../../订阅_x711y216.png"; sourceTree = "<group>"; };
 		BF26BA3D1475DF73001B6BC4 /* 购买_x711y174.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "购买_x711y174.png"; path = "../../购买_x711y174.png"; sourceTree = "<group>"; };
@@ -338,6 +364,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86F37E9E1480A2490046C5E4 /* CoreData.framework in Frameworks */,
 				2E7EF76714736A2300D7C632 /* QuartzCore.framework in Frameworks */,
 				2E7EF76514736A1200D7C632 /* MapKit.framework in Frameworks */,
 				86224EF41462D9130067DD02 /* libxml2.2.7.3.dylib in Frameworks */,
@@ -529,6 +556,7 @@
 		86224E9A1462D6090067DD02 = {
 			isa = PBXGroup;
 			children = (
+				86F37E9D1480A2490046C5E4 /* CoreData.framework */,
 				2E7A9779147CC6CE00ED4221 /* logo.png */,
 				2EB395CE14778DF7007F1D55 /* Default-Landscape~ipad.png */,
 				2E7EF76614736A2300D7C632 /* QuartzCore.framework */,
@@ -561,12 +589,14 @@
 		86224EAF1462D6090067DD02 /* BooksStore */ = {
 			isa = PBXGroup;
 			children = (
+				86C69DE61481D6F800F0A877 /* models */,
 				86224EB81462D6090067DD02 /* BooksStoreAppDelegate.h */,
 				86224EB91462D6090067DD02 /* BooksStoreAppDelegate.m */,
 				86E8F57F14659C4000E90DB8 /* Base */,
 				86224EE71462D6F00067DD02 /* xmlparser */,
 				86224ED41462D61D0067DD02 /* viewcontrollers */,
 				86224EB01462D6090067DD02 /* Supporting Files */,
+				86C69E141482777400F0A877 /* TestMagazine.xml */,
 			);
 			path = BooksStore;
 			sourceTree = "<group>";
@@ -581,6 +611,7 @@
 				86224EB21462D6090067DD02 /* InfoPlist.strings */,
 				86224EB51462D6090067DD02 /* main.m */,
 				86224EB71462D6090067DD02 /* BooksStore-Prefix.pch */,
+				86F37EA81480A71F0046C5E4 /* storage.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -620,9 +651,29 @@
 			name = xmlparser;
 			sourceTree = "<group>";
 		};
+		86C69DE61481D6F800F0A877 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				86E0383D148B10AE00A52278 /* MagazineGroup.h */,
+				86E0383E148B10AE00A52278 /* MagazineGroup.m */,
+				86E03840148B10C500A52278 /* MagazineListPreView.h */,
+				86E03841148B10C500A52278 /* MagazineListPreView.m */,
+				86E03843148B10D400A52278 /* PaidMagazineList.h */,
+				86E03844148B10D400A52278 /* PaidMagazineList.m */,
+				86E03846148B10E900A52278 /* MagazineToArticle.h */,
+				86E03847148B10E900A52278 /* MagazineToArticle.m */,
+				86E03849148B110300A52278 /* Article.h */,
+				86E0384A148B110300A52278 /* Article.m */,
+				86E0384C148B111600A52278 /* HotPoints.h */,
+				86E0384D148B111600A52278 /* HotPoints.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		86E8F57F14659C4000E90DB8 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				86E03855148B1DBC00A52278 /* BSysVersion.plist */,
 				86224EDA1462D6490067DD02 /* BaseViewController.h */,
 				86224EDB1462D6490067DD02 /* BaseViewController.m */,
 				86E8F57B14658B6500E90DB8 /* BaseParamUtil.h */,
@@ -805,6 +856,8 @@
 				2E692EA2147D16CD000F15FD /* TitileLetter.xib in Resources */,
 				2E692EA7147D16E7000F15FD /* TitleFrame.xib in Resources */,
 				2E692EAC147D1722000F15FD /* TitleMap.xib in Resources */,
+				86C69E151482777400F0A877 /* TestMagazine.xml in Resources */,
+				86E03856148B1DBC00A52278 /* BSysVersion.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +889,13 @@
 				2E692EA1147D16CD000F15FD /* TitileLetter.m in Sources */,
 				2E692EA6147D16E7000F15FD /* TitleFrame.m in Sources */,
 				2E692EAB147D1722000F15FD /* TitleMap.m in Sources */,
+				86F37EAA1480A71F0046C5E4 /* storage.xcdatamodeld in Sources */,
+				86E0383F148B10AE00A52278 /* MagazineGroup.m in Sources */,
+				86E03842148B10C500A52278 /* MagazineListPreView.m in Sources */,
+				86E03845148B10D400A52278 /* PaidMagazineList.m in Sources */,
+				86E03848148B10E900A52278 /* MagazineToArticle.m in Sources */,
+				86E0384B148B110300A52278 /* Article.m in Sources */,
+				86E0384E148B111600A52278 /* HotPoints.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,6 +1030,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		86F37EA81480A71F0046C5E4 /* storage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				86F37EA91480A71F0046C5E4 /* storage.xcdatamodel */,
+			);
+			currentVersion = 86F37EA91480A71F0046C5E4 /* storage.xcdatamodel */;
+			path = storage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 86224E9C1462D6090067DD02 /* Project object */;
 }

@@ -45,4 +45,9 @@
 #define detailViewWidth1 667 
 #define detailViewHeight1 711
 #define TitleView_Height 38
+
+#define NeedUpdateNothing 4
+#define NeedUpdateBookStoreGroup 2
+#define NeedUpdateBookStore 3
+#define NeedUpdateALL 1
 @end

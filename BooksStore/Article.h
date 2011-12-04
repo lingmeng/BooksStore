@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSNumber * Id;
 @property (nonatomic, retain) NSString * KeyWords;
 @property (nonatomic, retain) NSString * MagazineId;
-@property (nonatomic, retain) UNKNOWN_TYPE SortNum;
+@property (nonatomic, retain) NSNumber * SortNum;
 
 @end

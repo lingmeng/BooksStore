@@ -1,0 +1,54 @@
+<MAGAZINE>
+    <COVER ImageSource="00_1_bg.png">
+        
+    </COVER>
+    <ARTICLE NO="1">
+        <SKIPBUTTONS>110001001,110001002,110001003,110001004,110001005</SKIPBUTTONS>
+        <PAGE ImageSource="page1.png">年11文章0001按钮001
+            <HOTPOINT BtnStartX="120" BtnStartY="120" BtnWidth="123" BtnHeight="345" Ptype="INFOMATION" BtnImageSource="A.png" BtnId="110001001">
+                <INFOMATION ViewStartX="0" ViewStartY="0" ViewHeight="123" ViewWidth="123">
+                    ABCDEFGHIJKLMN
+                </INFOMATION>
+            </HOTPOINT>
+            <HOTPOINT BtnStartX="0" BtnStartY="0" BtnWidth="123" BtnHeight="345" Ptype="MAP" BtnImageSource="B.png" BtnId="110001002">
+                <MAP ViewStartX="" ViewStartY="" ViewHeight="" ViewWidth="" Longitude="" Latitude="">
+                </MAP>
+            </HOTPOINT>
+            <HOTPOINT BtnStartX="0" BtnStartY="0" BtnWidth="123" BtnHeight="345" Ptype="SCROLL" BtnImageSource="C.png" BtnId="110001003">
+                <SCROLL ViewStartX="" ViewStartY="" ViewHeight="" ViewWidth="" CloseBtnImageSource="Close.png" ClosetnId="110001004">
+                    <IMAGE ImageSource="ScrollImage1.png">
+                    </IMAGE>
+                    <IMAGE ImageSource="ScrollImage2.png">
+                    </IMAGE>
+                </SCROLL>
+            </HOTPOINT>
+            <HOTPOINT BtnStartX="0" BtnStartY="0" BtnWidth="123" BtnHeight="345" Ptype="VIDEO" BtnImageSource="PLAY.png" BtnId="110001005">
+                <VIDEO ViewStartX="" ViewStartY="" ViewHeight="" ViewWidth="" InitSeconds="1" URL="http://132.228.209.22/a.movie" >
+                </VIDEO>
+            </HOTPOINT>
+        </PAGE>
+        <PAGE ImageSource="page2.png">
+            
+        </PAGE>
+        <PAGE ImageSource="page3.png">
+            
+        </PAGE>
+        <PAGE ImageSource="page4.png">
+            
+        </PAGE>
+        <PAGE ImageSource="page5.png">
+            
+        </PAGE>
+    </ARTICLE>
+    <ARTICLE NO="2">
+        <PAGE ImageSource="02_1_bg.png">
+            
+        </PAGE>
+        <PAGE ImageSource="01_2_bg.png">
+            
+        </PAGE>
+        <PAGE ImageSource="01_3_bg.png">
+            
+        </PAGE>
+    </ARTICLE>
+</MAGAZINE>

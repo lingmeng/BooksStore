@@ -13,4 +13,8 @@
 @interface BaseViewController : UIViewController
 
 -(void) hideBar;
+- (id)initWithPageNumber:(int)page;
+-(NSInteger)needSychronize;
+-(Boolean)sychronizeWithServ:(int)flag;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext; 
 @end

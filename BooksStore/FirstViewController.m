@@ -38,6 +38,10 @@
     [image release];
     
 }
+//报文存储
+-(void)sychronizeMagazine{
+   
+}
 
 -(void)loadMagezines{
     
@@ -473,6 +477,8 @@ int singeView_hidden = 0;
     // 创建文件管理器
     NSFileManager *fileMgr = [NSFileManager defaultManager];
     
+    
+    
     NSString *fileDirectoryPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"testpath1"];
     [[NSFileManager defaultManager]   createDirectoryAtPath:fileDirectoryPath  withIntermediateDirectories:YES attributes:nil error:&error ];
     
@@ -495,7 +501,15 @@ int singeView_hidden = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    int flag=[self needSychronize];
+    if (flag==1) {
+        [self sychronizeWithServ:1];
+    }else if (flag==2) {
+         [self sychronizeWithServ:2];
+    }else if (flag==3) {
+         [self sychronizeWithServ:3];
+    }
+    
     [self loadMagezines];
     //nextsv.hidden = YES;
     //[self hideBar];

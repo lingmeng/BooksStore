@@ -9,7 +9,7 @@
 #import "BaseViewController.h"
 
 @implementation BaseViewController
-
+@synthesize managedObjectContext;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -19,6 +19,79 @@
     return self;
 }
 
+- (NSString *)getDocumentDirectory {  
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);  
+    return [paths objectAtIndex: 0];  
+} 
+//开启同步sychronizedAndSaveToDB
+-(NSInteger)needSychronize{
+    /*
+     <VERSION>
+        <BOOKSTOREVERSION>1
+        </BOOKSTOREVERSION>
+        <BOOKSTOREGROUPVERSION>1
+        </BOOKSTOREGROUPVERSION>
+     <VERSION>
+     */
+    NSError* error;
+    NSString *xmlFromServ=@"<VERSION><BOOKSTOREVERSION>1</BOOKSTOREVERSION><BOOKSTOREGROUPVERSION>1</BOOKSTOREGROUPVERSION></VERSION>";
+    GDataXMLDocument* document = [[GDataXMLDocument alloc] initWithXMLString:xmlFromServ options:0 error:&error];
+	GDataXMLElement *rootNode = [document rootElement];
+    NSArray  *bookversion = [rootNode nodesForXPath:@"//VERSION/BOOKSTOREVERSION" error:&error];
+    NSArray  *bookgroupversion = [rootNode nodesForXPath:@"//VERSION/BOOKSTOREGROUPVERSION" error:&error];
+   
+    //下载报文判断版本号
+    NSNumber *serv=(NSNumber *)[[bookversion objectAtIndex:0]stringValue];
+    NSNumber *servg=(NSNumber *)[[bookgroupversion objectAtIndex:0]stringValue];
+    
+    NSLog(@"a %d,b %d",[serv intValue],[servg intValue]);
+   
+    //获取本机版本号
+    NSString *documentDirectory = [self getDocumentDirectory];  
+    NSString *fileName = @"BSysVersion.plist";  
+    NSString *finalPath = [documentDirectory stringByAppendingPathComponent: fileName];  
+    if (![[NSFileManager defaultManager] fileExistsAtPath:finalPath]) {
+        finalPath = [[NSBundle mainBundle] pathForResource:@"BSysVersion" ofType:@"plist"];
+    }
+    //NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath:finalPath];
+    NSMutableDictionary *topRoot = [[NSMutableDictionary alloc] initWithContentsOfFile: finalPath];  
+    
+    //根据版本号判断是否需要同步
+    NSNumber *bsv=(NSNumber *)[topRoot objectForKey:@"BookStoreVersion"];
+    NSNumber *bsgv=(NSNumber *)[topRoot objectForKey:@"BookStoreGroupVersion"];
+    if (([bsv intValue]==1||[serv intValue]>[bsv intValue])&&([bsgv intValue]==1||[servg intValue]>[bsgv intValue])) {
+        //NSLog(@"need update bookstore");
+        return NeedUpdateALL;//类型和杂志均需更新
+    }
+    else if ([bsgv intValue]==1||[servg intValue]>[bsgv intValue]) {
+        return NeedUpdateBookStoreGroup;//类型需更新
+    }
+    else if ([bsgv intValue]==1||[servg intValue]>[bsgv intValue]) {
+        return NeedUpdateBookStore;//杂志需更新
+    }
+    else 
+    return NeedUpdateNothing;//无需更新
+}
+-(Boolean)sychronizeWithServ:(int)flag{
+    if (flag==NeedUpdateALL) {
+        NSLog(@"dsds");
+    }
+    return YES;
+}
+
+- (id)initWithPageNumber:(int)page {
+    /*if (page==0) {
+        if (self = [super initWithNibName:@"FrontCoverView" bundle:nil])
+        {// NSLog(@"iiiFrontCoverView count:%d",[self retainCount]);
+            pageNumber = page; return self;
+        }
+    }*/
+    if (self = [super initWithNibName:@"BaseViewController" bundle:nil])
+    {
+        
+    }
+    return self;
+}
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -113,13 +186,12 @@ bool ishidden=NO;
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
-*/
 
 - (void)viewDidUnload
 {
