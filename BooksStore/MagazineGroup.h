@@ -15,5 +15,5 @@
 @property (nonatomic, retain) NSString * GroupCover;
 @property (nonatomic, retain) NSNumber * GroupId;
 @property (nonatomic, retain) NSNumber * Id;
-
+@property (nonatomic, retain) NSString * GroupName;
 @end

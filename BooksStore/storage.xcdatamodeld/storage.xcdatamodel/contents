@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="851" systemVersion="11B26" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Article" representedClassName="Article">
+    <entity name="ArticlePage" representedClassName="Article">
         <attribute name="ContentBgImage" attributeType="String"/>
-        <attribute name="FirstSmallImage" attributeType="String"/>
         <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1" indexed="YES"/>
         <attribute name="KeyWords" optional="YES" attributeType="String"/>
-        <attribute name="MagazineId" attributeType="String"/>
-        <attribute name="SortNum" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="PageNo" attributeType="Integer 32" defaultValueString="0"/>
     </entity>
     <entity name="HotPoints" representedClassName="HotPoints">
-        <attribute name="ArticleId" attributeType="String"/>
+        <attribute name="ArticleId" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="HotPointType" attributeType="String"/>
         <attribute name="HotPointViewStartX" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="HotPointViewStartY" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="HotPonitViewHeight" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="HotPonitViewWidth" attributeType="Integer 32" defaultValueString="0"/>
-        <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1"/>
-        <attribute name="MapLocation" optional="YES" attributeType="String"/>
+        <attribute name="InfomationImage" optional="YES" attributeType="String"/>
+        <attribute name="Latitude" optional="YES" attributeType="Double" defaultValueString="0"/>
+        <attribute name="Longitude" attributeType="Double" minValueString="1" defaultValueString="1"/>
         <attribute name="PageNo" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="ScrollViewImage" optional="YES" attributeType="String"/>
-        <attribute name="Text" optional="YES" attributeType="String"/>
+        <attribute name="ScrollViewRollType" optional="YES" attributeType="String"/>
+        <attribute name="ScrollViewSize" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="URL" optional="YES" attributeType="String"/>
+        <attribute name="VEDIOADDRESS" optional="YES" attributeType="String"/>
     </entity>
     <entity name="MagazineGroup" representedClassName="MagazineGroup">
         <attribute name="GroupCover" attributeType="String"/>
         <attribute name="GroupId" attributeType="Integer 32" minValueString="1" defaultValueString="1"/>
+        <attribute name="GroupName" attributeType="String"/>
         <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1" indexed="YES"/>
     </entity>
     <entity name="MagazineListPreView" representedClassName="MagazineListPreView">
@@ -48,11 +50,11 @@
         <attribute name="MagazineId" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Article" positionX="-306" positionY="126" width="128" height="135"/>
-        <element name="HotPoints" positionX="-153" positionY="126" width="128" height="225"/>
-        <element name="MagazineGroup" positionX="-315" positionY="-78" width="126" height="90"/>
-        <element name="MagazineListPreView" positionX="-182" positionY="-81" width="128" height="165"/>
-        <element name="MagazineToArticle" positionX="-479" positionY="99" width="128" height="90"/>
+        <element name="ArticlePage" positionX="-315" positionY="120" width="128" height="105"/>
+        <element name="HotPoints" positionX="-153" positionY="117" width="128" height="270"/>
+        <element name="MagazineGroup" positionX="-315" positionY="-78" width="126" height="105"/>
+        <element name="MagazineListPreView" positionX="-182" positionY="-81" width="128" height="180"/>
+        <element name="MagazineToArticle" positionX="-479" positionY="126" width="128" height="90"/>
         <element name="PaidMagazineList" positionX="-45" positionY="-72" width="128" height="90"/>
     </elements>
 </model>

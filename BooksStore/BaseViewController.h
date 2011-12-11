@@ -7,14 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GDataXMLNode.h"
+#import "TBXML.h"
 #import "BaseParamUtil.h"
+#import "MagazineGroup.h"
+#import "MagazineListPreView.h"
+#import "PaidMagazineList.h"
+#import "MagazineToArticle.h"
+#import "Article.h"
+#import "HotPoints.h"
+#import "ASIHTTPRequest.h"
+@class ASINetworkQueue;
+@interface BaseViewController : UIViewController{
+ASINetworkQueue *networkQueue;
+    UIProgressView *progressIndicator;
+    BOOL failed;
+}
 
-@interface BaseViewController : UIViewController
 
 -(void) hideBar;
-- (id)initWithPageNumber:(int)page;
+-(id)initWithPageNumber:(int)page;
 -(NSInteger)needSychronize;
+-(Boolean)sychronizeGroup;
+-(Boolean)sychronizeBooks;
 -(Boolean)sychronizeWithServ:(int)flag;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext; 
 @end

@@ -14,5 +14,5 @@
 @dynamic GroupCover;
 @dynamic GroupId;
 @dynamic Id;
-
+@dynamic GroupName;
 @end

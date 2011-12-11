@@ -99,7 +99,7 @@ Boolean pageControlUsed = YES;
 	NSString* fileText = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 	//NSLog(@"path:%d , fileText:%d",[path retainCount],[fileText retainCount]);
     
-	
+	/*
 	// parse text as xml
 	NSError* error;
 	GDataXMLDocument* document = [[GDataXMLDocument alloc] initWithXMLString:fileText options:0 error:&error];
@@ -173,22 +173,22 @@ for (int k=0; k<[articleList count]; k++) {
             //SkipButtonArray=[[node stringValue ]componentsSeparatedByString:@","];
             NSLog(@"%@",[(GDataXMLNode*)[[hotpointlist objectAtIndex:g]attributeForName:@"BtnStartX"]stringValue]);
         }*/
-        [basescroll addSubview:imagev];
+       /* [basescroll addSubview:imagev];
     }
     [magazineScrollView addSubview:basescroll];
-    
+    */
     //[imagev release];
     //[basescroll release];
    
-}
+//}
     
     
    // [self.view insertSubview:magazineScrollView belowSubview:self.view];
     
     //[cover release]; 
-	[document release];
+	//[document release];
 	
-    [super viewDidLoad];
+   // [super viewDidLoad];
 }
 - (void)viewDidLoad
 {
@@ -196,10 +196,11 @@ for (int k=0; k<[articleList count]; k++) {
     magazineScrollView.delegate=self;
     magazineScrollView.showsVerticalScrollIndicator=NO;
     magazineScrollView.showsHorizontalScrollIndicator=NO;
-    
-    [self loadTabBarItem];
-    [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
+    //needSychronize
+    [self needSychronize];
+    //[self loadTabBarItem];
+   // [self loadScrollViewWithPage:0];
+   // [self loadScrollViewWithPage:1];
     
     //[self loadReadContent];
 }

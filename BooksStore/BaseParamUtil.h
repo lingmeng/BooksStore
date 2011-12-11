@@ -50,4 +50,7 @@
 #define NeedUpdateBookStoreGroup 2
 #define NeedUpdateBookStore 3
 #define NeedUpdateALL 1
+
+#define CommandOk   1
+#define CommandFailure 0
 @end

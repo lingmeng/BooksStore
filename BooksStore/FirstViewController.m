@@ -224,6 +224,12 @@
     ////                            stringByAppendingPathComponent:@"世界建筑导报.png"],
     //                          nil];
     //int size=[imageNames count];
+    
+    //读取数据库中杂志封面信息
+    
+    
+    
+    
     NSArray* imageNames = [NSArray arrayWithObjects:@"世界建筑导报第一期",@"世界建筑导报第二期",@"世界建筑导报第三期",@"世界建筑导报第四期",@"世界建筑导报第五期",@"世界建筑导报第六期",@"世界建筑导报第七期",@"世界建筑导报第八期",@"世界建筑导报第九期",@"世界建筑导报第十期",@"世界建筑导报第十一期",@"世界建筑导报第十二期" ,nil];
     int size = [imageNames count];//7;
     //    NSString *hotImagePath=[fileDirectoryPath 
@@ -501,7 +507,7 @@ int singeView_hidden = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    int flag=[self needSychronize];
+    /*int flag=[self needSychronize];
     if (flag==1) {
         [self sychronizeWithServ:1];
     }else if (flag==2) {
@@ -510,10 +516,17 @@ int singeView_hidden = 0;
          [self sychronizeWithServ:3];
     }
     
-    [self loadMagezines];
+    [self loadMagezines];*/
     //nextsv.hidden = YES;
     //[self hideBar];
-
+    NSString *groupXML=@"<GROUPLIST version=\"2\"><GROUP><GROUPID>1</GROUPID><GROUPNAME>世界建筑导报</GROUPNAME><GROUPCOVER>sjjz.png</GROUPCOVER></GROUP><GROUP><GROUPID>2</GROUPID><GROUPNAME>世界建筑导报2</GROUPNAME><GROUPCOVER>sjjz2.png</GROUPCOVER></GROUP></GROUPLIST>";
+    TBXML *groupXml = [TBXML tbxmlWithXMLString:groupXML];
+    TBXMLElement *root = groupXml.rootXMLElement;
+    
+    
+   
+   
+    NSLog(@"ok");
       
 }
 
@@ -528,16 +541,27 @@ int singeView_hidden = 0;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    NSLog(@"view will app");
-//    for(UIView *view in self.tabBarController.view.subviews)
-//    {
-//        if ([view isKindOfClass:[UITabBar class]]) {
-//            [view setFrame:CGRectMake(view.frame.origin.x, 768-49, view.frame.size.width, view.frame.size.height)];
-//            NSLog(@"qqqqqqqqqsssss%f",view.frame.origin.y);
-//        }
-//    }
-//    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(synchronizeApp) 
+                                                 name:UIApplicationDidBecomeActiveNotification 
+                                               object:nil];
     
+}
+/*程序同步*/
+-(void)synchronizeApp{
+    int i=[self needSychronize];
+    if (i!=NeedUpdateNothing) {
+        if (i==NeedUpdateALL) {
+            [self sychronizeGroup];
+            [self sychronizeBooks];
+        }
+        else if(i==NeedUpdateBookStore){
+            [self sychronizeBooks];
+        }else if(i==NeedUpdateBookStoreGroup){
+            [self sychronizeGroup];
+        }
+    }
+ 
 }
 
 - (void)viewDidAppear:(BOOL)animated

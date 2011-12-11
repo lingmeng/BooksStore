@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ASIHTTPRequest.h"
 @interface BaseUIScrollView : UIScrollView<UIScrollViewDelegate>
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
