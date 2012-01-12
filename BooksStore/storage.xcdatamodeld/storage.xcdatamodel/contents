@@ -1,60 +1,96 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="851" systemVersion="11B26" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="ArticlePage" representedClassName="Article">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="851" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Article" representedClassName="Article">
         <attribute name="ContentBgImage" attributeType="String"/>
-        <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1" indexed="YES"/>
+        <attribute name="Desc" attributeType="String"/>
+        <attribute name="Id" optional="YES" attributeType="Integer 32" minValueString="0" indexed="YES"/>
         <attribute name="KeyWords" optional="YES" attributeType="String"/>
-        <attribute name="PageNo" attributeType="Integer 32" defaultValueString="0"/>
     </entity>
     <entity name="HotPoints" representedClassName="HotPoints">
         <attribute name="ArticleId" attributeType="Integer 32" defaultValueString="0"/>
-        <attribute name="HotPointType" attributeType="String"/>
-        <attribute name="HotPointViewStartX" attributeType="Integer 32" defaultValueString="0"/>
-        <attribute name="HotPointViewStartY" attributeType="Integer 32" defaultValueString="0"/>
-        <attribute name="HotPonitViewHeight" attributeType="Integer 32" defaultValueString="0"/>
-        <attribute name="HotPonitViewWidth" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HBtnClick" optional="YES" attributeType="String"/>
+        <attribute name="HBtnHeight" optional="YES" attributeType="Float" defaultValueString="0.0"/>
+        <attribute name="HBtnNormal" optional="YES" attributeType="String"/>
+        <attribute name="HBtnStartX" optional="YES" attributeType="Integer 32" defaultValueString="0.0"/>
+        <attribute name="HBtnStartY" optional="YES" attributeType="Integer 32" defaultValueString="0.0"/>
+        <attribute name="HBtnWidth" optional="YES" attributeType="Integer 32" defaultValueString="0.0"/>
+        <attribute name="HLevel" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HPageNo" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HParent" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HType" attributeType="String"/>
+        <attribute name="HViewHeight" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HViewStartX" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HViewStartY" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HViewWidth" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="InfomationImage" optional="YES" attributeType="String"/>
         <attribute name="Latitude" optional="YES" attributeType="Double" defaultValueString="0"/>
         <attribute name="Longitude" attributeType="Double" minValueString="1" defaultValueString="1"/>
-        <attribute name="PageNo" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="ScrollViewImage" optional="YES" attributeType="String"/>
         <attribute name="ScrollViewRollType" optional="YES" attributeType="String"/>
         <attribute name="ScrollViewSize" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="ShowType" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="URL" optional="YES" attributeType="String"/>
         <attribute name="VEDIOADDRESS" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="HotPointsDoc">
+        <attribute name="ArticleId" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="HotPointDocPath" optional="YES" attributeType="String"/>
+        <attribute name="PageNo" optional="YES" attributeType="Integer 32" defaultValueString="0"/>
+    </entity>
+    <entity name="MagazineDetails" representedClassName="MagazineDetails">
+        <attribute name="ContentImages" attributeType="String"/>
+        <attribute name="Description" attributeType="String"/>
+        <attribute name="GroupName" optional="YES" attributeType="String"/>
+        <attribute name="MagazineCover" attributeType="String"/>
+        <attribute name="MagazineId" attributeType="Integer 32"/>
+        <attribute name="Price" attributeType="Double" defaultValueString="0.0"/>
+    </entity>
     <entity name="MagazineGroup" representedClassName="MagazineGroup">
         <attribute name="GroupCover" attributeType="String"/>
-        <attribute name="GroupId" attributeType="Integer 32" minValueString="1" defaultValueString="1"/>
+        <attribute name="GroupId" attributeType="Integer 32" minValueString="1"/>
         <attribute name="GroupName" attributeType="String"/>
+        <attribute name="GVersion" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1" indexed="YES"/>
     </entity>
     <entity name="MagazineListPreView" representedClassName="MagazineListPreView">
-        <attribute name="GroupId" attributeType="Integer 32" minValueString="1" defaultValueString="1"/>
-        <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1"/>
+        <attribute name="GroupId" attributeType="Integer 32" minValueString="1"/>
+        <attribute name="GroupName" optional="YES" attributeType="String"/>
+        <attribute name="LVersion" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="MagazineCover" attributeType="String"/>
-        <attribute name="MagazineId" attributeType="String" minValueString="1"/>
+        <attribute name="MagazineId" attributeType="Integer 32" minValueString="1"/>
         <attribute name="MType" attributeType="String"/>
         <attribute name="Period" attributeType="Integer 32" defaultValueString="0"/>
         <attribute name="Price" attributeType="Double" defaultValueString="0.0"/>
         <attribute name="SmallImages" attributeType="String"/>
     </entity>
     <entity name="MagazineToArticle" representedClassName="MagazineToArticle">
-        <attribute name="ArticleId" attributeType="Integer 32" defaultValueString="0"/>
-        <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1"/>
-        <attribute name="MagazineId" attributeType="Integer 32" defaultValueString="0"/>
+        <attribute name="ArticleId" optional="YES" attributeType="Integer 32"/>
+        <attribute name="Id" optional="YES" attributeType="Integer 32"/>
+        <attribute name="MagazineId" optional="YES" attributeType="Integer 32"/>
     </entity>
-    <entity name="PaidMagazineList" representedClassName="PaidMagazineList">
-        <attribute name="Id" attributeType="Integer 32" minValueString="1" defaultValueString="1" indexed="YES"/>
-        <attribute name="IsExsist" attributeType="Boolean" defaultValueString="NO"/>
-        <attribute name="MagazineId" attributeType="String"/>
+    <entity name="Pages" representedClassName="Pages">
+        <attribute name="ArticleId" optional="YES" attributeType="Integer 32" minValueString="0" indexed="YES"/>
+        <attribute name="ContentBgImage" optional="YES" attributeType="String"/>
+        <attribute name="PageNo" optional="YES" attributeType="Integer 32" minValueString="1"/>
+    </entity>
+    <entity name="PaidMagazineListPreView" representedClassName="PaidMagazineListPreView">
+        <attribute name="GroupId" attributeType="Integer 32" minValueString="1"/>
+        <attribute name="GroupName" attributeType="String"/>
+        <attribute name="isExsisit" attributeType="Integer 32" defaultValueString="NO"/>
+        <attribute name="MagazineCover" attributeType="String"/>
+        <attribute name="MagazineId" attributeType="Integer 32" minValueString="1"/>
+        <attribute name="Mtype" attributeType="String"/>
+        <attribute name="Period" attributeType="Integer 32" defaultValueString="0"/>
     </entity>
     <elements>
-        <element name="ArticlePage" positionX="-315" positionY="120" width="128" height="105"/>
-        <element name="HotPoints" positionX="-153" positionY="117" width="128" height="270"/>
-        <element name="MagazineGroup" positionX="-315" positionY="-78" width="126" height="105"/>
-        <element name="MagazineListPreView" positionX="-182" positionY="-81" width="128" height="180"/>
-        <element name="MagazineToArticle" positionX="-479" positionY="126" width="128" height="90"/>
-        <element name="PaidMagazineList" positionX="-45" positionY="-72" width="128" height="90"/>
+        <element name="Article" positionX="-495" positionY="99" width="128" height="90"/>
+        <element name="HotPoints" positionX="-155" positionY="9" width="128" height="270"/>
+        <element name="MagazineDetails" positionX="-9" positionY="-126" width="128" height="120"/>
+        <element name="MagazineGroup" positionX="-144" positionY="-126" width="126" height="120"/>
+        <element name="MagazineListPreView" positionX="-468" positionY="-90" width="128" height="180"/>
+        <element name="MagazineToArticle" positionX="-630" positionY="99" width="128" height="90"/>
+        <element name="Pages" positionX="-360" positionY="99" width="128" height="90"/>
+        <element name="PaidMagazineListPreView" positionX="-630" positionY="-81" width="153" height="150"/>
+        <element name="HotPointsDoc" positionX="-335" positionY="-90" width="128" height="90"/>
     </elements>
 </model>

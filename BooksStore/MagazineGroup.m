@@ -15,4 +15,5 @@
 @dynamic GroupId;
 @dynamic Id;
 @dynamic GroupName;
+@dynamic GVersion;
 @end

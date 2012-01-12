@@ -11,15 +11,24 @@
 @interface BaseParamUtil : NSObject
 #define MagazineViewWidth  137.0
 #define MagazineViewHeight 183.0
+#define ProgressViewWidth  137.0
+#define ProgressViewHeight  20.0
+#define ProgressViewOriginYToCover 3.0  
+#define LabelTOMagazine 5.0  
+#define ButtonTOMagazine 30.0 
+#define ButtonWidth      100.0
+#define ButtonHeight      40.0
 
 #define bookshadowWidth  137.0
 #define bookshadowHeight 34.0
 
 #define bookLineWidth  707.0
 #define bookLineHeight 2.0
- 
+
+
+
 #define MagazineViewXGap   55.0
-#define MagazineViewYGap   86.0
+#define MagazineViewYGap   176.0
 #define MagazineViewToTopLeft 25
 #define MagazineViewToTopTop 35
 
@@ -34,7 +43,10 @@
 #define HotFlagHeight 66
 #define TextWidth 137.0 
 #define TextHeight 25 
-#define TextToMagazineGap 2 
+#define TextToMagazineGap 10 
+#define BtnToTextGap 5
+#define BtnToTextWidth 137.0
+#define BtnToTextHeight 25
 
 #define detailViewWidth 1024 
 #define detailViewHeight 220
@@ -53,4 +65,8 @@
 
 #define CommandOk   1
 #define CommandFailure 0
+#define DownloadROOTURL  @"http://www.5dscape.cn/ArchiBooks"
+#define BASEURL  @"http://www.5dscape.cn"
+
+
 @end

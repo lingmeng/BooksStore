@@ -12,6 +12,10 @@
 #import <MapKit/MKAnnotation.h>
 #import <MapKit/MKReverseGeocoder.h>
 #import "BaseViewController.h"
+#import "W_A_M_HomeViewController.h"
+
+@class W_A_M_HomeViewController;
+
 @interface MapViewController : BaseViewController<MKAnnotation,MKReverseGeocoderDelegate,MKMapViewDelegate>
 {
     MKPinAnnotationView *myAnnotstionView ;
@@ -28,6 +32,10 @@
 @property(nonatomic, retain) UIImageView *imaagemap;
 @property(nonatomic, retain) UIImageView *imageview;
 
+@property(nonatomic, retain) W_A_M_HomeViewController *wamhomeVc;
+
+- (void)mapLoadView:(int)pages latitude:(float)latitude longitude:(float)longitude;
+
 - (IBAction)changeMapType:(id)sender;
-- (void)addMapView:(id)sender;
+
 @end

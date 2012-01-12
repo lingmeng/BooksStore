@@ -31,6 +31,7 @@
     //NSLog(@"%f,%f",self.window.bounds.size.width,self.window.bounds.size.height);
     // Override point for customization after application launch.
     
+   
     BaseViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
     BaseViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
     BaseViewController *viewController3 = [[ReadController alloc] initWithNibName:@"ReadController" bundle:nil];
@@ -43,7 +44,7 @@
     //[self.tabBarController.tabBar setBackgroundColor:[UIColor whiteColor]];
    
     [self.tabBarController.tabBar setAlpha:0.8];
-//    self.tabBarController.tabBar.frame = CGRectMake(0, 748-49, 1024, 49);
+    //self.tabBarController.tabBar.frame = CGRectMake(0, 748-49, 1024, 49);
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2,viewController3,viewController4,viewController5,viewController6,nil];
     
@@ -75,6 +76,7 @@
     [viewController6 release];
     //viewController1.parentViewController
     [self.tabBarController release];
+    //NSLog(@"-----%f,%f",self.window.frame.size.width,self.window.frame.size.height);
     return YES;
     
 }
@@ -139,6 +141,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    // BaseViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
+   // BaseViewController *viewController = [[BaseViewController alloc]init];
+   // [self synchronizeApp];
+    //[viewController release];
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
@@ -157,9 +163,9 @@
  // Optional UITabBarControllerDelegate method.
  - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
  {
-     NSLog(@"currentController why index:%d",self.tabBarController.selectedIndex);  
-     UIViewController  *currentController =self.tabBarController.selectedViewController;  
-     NSLog(@"currentController why : %@",currentController);  
+     //NSLog(@"currentController why index:%d",self.tabBarController.selectedIndex);  
+     //UIViewController  *currentController =self.tabBarController.selectedViewController;  
+     //NSLog(@"currentController why : %@",currentController);  
      self.tabBarController.selectedIndex = 0; 
  }
 
@@ -168,9 +174,9 @@
  // Optional UITabBarControllerDelegate method.
  - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed
  {
-     NSLog(@"currentController why why why index:%d",self.tabBarController.selectedIndex);  
-     UIViewController  *currentController =self.tabBarController.selectedViewController;  
-     NSLog(@"currentController why why why : %@",currentController);  
+     //NSLog(@"currentController why why why index:%d",self.tabBarController.selectedIndex);  
+     //UIViewController  *currentController =self.tabBarController.selectedViewController;  
+     //NSLog(@"currentController why why why : %@",currentController);  
      self.tabBarController.selectedIndex = 0; 
  }
 
@@ -297,6 +303,5 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
-
-
+  
 @end

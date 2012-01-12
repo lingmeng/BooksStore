@@ -49,5 +49,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>BookStoreGroupVersion</key>
+	<integer>-1</integer>
+	<key>BookStoreVersion</key>
+	<integer>-1</integer>
 </dict>
 </plist>

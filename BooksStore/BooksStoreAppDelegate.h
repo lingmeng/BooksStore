@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ASIHTTPRequest.h"
+@class ASINetworkQueue;
 @interface BooksStoreAppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
-
+{
+    
+     UITabBarController *tabBarController;
+//CFRunLoopRef currentLoop;
+}
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
@@ -23,4 +29,14 @@
 - (NSURL *)applicationDocumentsDirectory; 
 
 - (void) hideTabBar:(BOOL) hidden;
+/*-(NSInteger)needSychronize;
+-(Boolean)sychronizeGroup;
+-(Boolean)sychronizeBooks;
+-(Boolean)sychronizeWithServ:(int)flag;
+-(void)synchronizeApp;
+-(void)showMessageAnimationatView;
+*/
+
 @end
+
+

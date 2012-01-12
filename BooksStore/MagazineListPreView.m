@@ -12,12 +12,13 @@
 @implementation MagazineListPreView
 
 @dynamic GroupId;
-@dynamic Id;
+
 @dynamic MagazineCover;
 @dynamic MagazineId;
 @dynamic MType;
 @dynamic Period;
 @dynamic Price;
 @dynamic SmallImages;
-
+@dynamic LVersion;
+@dynamic GroupName;
 @end

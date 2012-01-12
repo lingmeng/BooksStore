@@ -9,14 +9,14 @@
 #import "BaseViewController.h"
 
 #import "BaseUIScrollView.h"
-
+#import "W_A_M_HomeViewController.h"
 @interface ReadController : BaseViewController<UIScrollViewDelegate>
 
-//@property (nonatomic, retain)W_A_M_HomeViewController *wamhvc;
-@property (nonatomic, retain) IBOutlet UIView *top_titleView;
+@property (nonatomic, retain)W_A_M_HomeViewController *wamhvc;
+/*@property (nonatomic, retain) IBOutlet UIView *top_titleView;
 @property(nonatomic, retain) IBOutlet UIView *down_titleView;
 @property(nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property(nonatomic, retain) IBOutlet BaseUIScrollView *magazineScrollView;
 @property (nonatomic, retain) NSMutableArray *viewControllers;
-- (void)loadScrollViewWithPage:(int)page;
+- (void)loadScrollViewWithPage:(int)page;*/
 @end

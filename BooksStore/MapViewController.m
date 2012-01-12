@@ -16,7 +16,7 @@
 @synthesize myGeocoder; 
 @synthesize imaagemap;
 @synthesize imageview;
-
+@synthesize wamhomeVc;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,13 +45,13 @@
     mapTypeContrl = [[UISegmentedControl alloc] initWithItems:buttonNames];
     mapTypeContrl.selectedSegmentIndex=0; 
     mapTypeContrl.segmentedControlStyle = UISegmentedControlStyleBar;
-    mapTypeContrl.frame = CGRectMake(873, 567, 150, 30);
+    mapTypeContrl.frame = CGRectMake(873, 715, 150, 30);
     mapTypeContrl.tag = 230;
     mapTypeContrl.userInteractionEnabled = YES;
     [mapTypeContrl addTarget:self action:@selector(changeMapType:) forControlEvents:UIControlEventValueChanged];
-
     
-
+    
+    
     
     [mapView addSubview:mapTypeContrl];
     
@@ -62,18 +62,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.view.userInteractionEnabled = YES;
+    wamhomeVc = [[W_A_M_HomeViewController alloc] init];
+    [wamhomeVc setMapVc:self];
     
-    imaagemap = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"image1.png"]];
-    imaagemap.userInteractionEnabled = YES;
-    imaagemap.frame =CGRectMake(0, 0, 1024,600);
-    [self.view insertSubview:imaagemap aboveSubview:mapView];
-    mapBtu = [UIButton buttonWithType:UIButtonTypeCustom];
-    mapBtu.frame = CGRectMake(map_button_left, map_button_top - 150, button_Width, button_Height);
-    [mapBtu setImage:[UIImage imageNamed:@"btn-ditu.png"] forState:UIControlStateNormal];
-    [mapBtu addTarget:self action:@selector(addMapView:) forControlEvents:UIControlEventTouchUpInside];
-    [mapBtu setTag:201];
-    [self.view insertSubview:mapBtu aboveSubview:imaagemap];
+    self.view.userInteractionEnabled = YES;
+    self.view.frame = CGRectMake(0, 0, 280, 180);
+    self.view.backgroundColor = [UIColor colorWithRed:109/255 green:109/255 blue:109/255 alpha:1.0];
+    //    imaagemap = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"image1.png"]];
+    //    imaagemap.userInteractionEnabled = YES;
+    //    imaagemap.frame =CGRectMake(0, 0, 1024,600);
+    //    [self.view insertSubview:imaagemap aboveSubview:mapView];
+    //    mapBtu = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    mapBtu.frame = CGRectMake(map_button_left, map_button_top - 150, button_Width, button_Height);
+    //    [mapBtu setImage:[UIImage imageNamed:@"btn-ditu.png"] forState:UIControlStateNormal];
+    //    [mapBtu addTarget:self action:@selector(addMapView:) forControlEvents:UIControlEventTouchUpInside];
+    //    [mapBtu setTag:201];
+    //    [self.view insertSubview:mapBtu aboveSubview:imaagemap];
 }
 
 - (void)viewDidUnload
@@ -81,12 +85,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    wamhomeVc = nil;
 }
 
 - (IBAction)changeMapType:(id)sender
 {
     
-//    NSLog(@"why why why why");
+    //    NSLog(@"why why why why");
     NSInteger index = [(UISegmentedControl *)sender selectedSegmentIndex];
     switch (index) {
         case 0:
@@ -115,28 +120,20 @@
     [mapView addAnnotation:placemark];
 }
 
+
+
+
+////自定义地图大头针
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    myAnnotstionView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"] autorelease];
     
-    
-    
-    imageview = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"mark.png"]];
-    imageview.frame = CGRectMake(myAnnotstionView.frame.size.width/2.0-10, 0.0-imageview.image.size.height+10, imageview.image.size.width, imageview.image.size.height);
-    //名称
-    UILabel *labe = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, imageview.frame.size.width,                                                         imageview.frame.size.height-20)];
-    labe.backgroundColor = [UIColor clearColor];
-    labe.tag = 0x66;
-    labe.textColor  = [UIColor whiteColor];
-    labe.font = [UIFont systemFontOfSize:12];
-    labe.textAlignment = UITextAlignmentCenter;
-    labe.text = @"世界建筑导报";
-    [imageview addSubview:labe];
-    [labe release];
 
-    [myAnnotstionView addSubview:imageview];
-    [imageview release];
+    myAnnotstionView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"] autorelease];
+    // myAnnotstionView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: annotation.title];
+    myAnnotstionView.image = [UIImage imageNamed:@"ZUOBIAO.png"];
+    myAnnotstionView.canShowCallout=NO;
     myAnnotstionView.animatesDrop = TRUE;
+    
     
     return myAnnotstionView;
     
@@ -144,39 +141,40 @@
 
 int showMap = 0;
 
-- (void)addMapView:(id)sender
+- (void)mapLoadView:(int)pages latitude:(float)latitude longitude:(float)longitude;
 {
-    [self.view insertSubview:imaagemap aboveSubview:mapView];
-//    CLLocationCoordinate2D myLocation;+4°29′	+52°09′
-    myLocation.latitude = 32.07;
-    myLocation.longitude = 118.77;
-     // 将经纬度坐标转换为View坐标. 
-
-
-    if (showMap) {
-        showMap = 0;
-        CGPoint userPt = [mapView convertCoordinate:myLocation toPointToView:mapView];
-        [self.view insertSubview:mapBtu aboveSubview:imaagemap];
-        [mapBtu setImage:[UIImage imageNamed:@"btn-ditu.png"] forState:UIControlStateNormal];
-        imaagemap.frame = CGRectMake(userPt.x, userPt.y, 0, 0);
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.60f];
-        imaagemap.frame =CGRectMake(0, 0, 1024,600);
-        [UIView commitAnimations];
+    //    [self.view insertSubview:imaagemap aboveSubview:mapView];
+    //    CLLocationCoordinate2D myLocation;+4°29′	+52°09′
+    myLocation.latitude = latitude;
+    myLocation.longitude = longitude;
+    // 将经纬度坐标转换为View坐标. 
+    
+    
+//    if (showMap) {
+//        showMap = 0;
+//        //        CGPoint userPt = [mapView convertCoordinate:myLocation toPointToView:mapView];
+//        //        [self.view insertSubview:mapBtu aboveSubview:imaagemap];
+//        //        [mapBtu setImage:[UIImage imageNamed:@"btn-ditu.png"] forState:UIControlStateNormal];
+//        //        imaagemap.frame = CGRectMake(userPt.x, userPt.y, 0, 0);
+//        //        [UIView beginAnimations:nil context:NULL];
+//        //        [UIView setAnimationDuration:0.60f];
+//        //        imaagemap.frame =CGRectMake(0, 0, 1024,748);
+//        //        [UIView commitAnimations];
 //        [mapView removeFromSuperview];
-    }else
-    {
-        showMap = 1;
+//    }else
+//    {
+//        showMap = 1;
+
         mapView = [[MKMapView alloc] init];
-        mapView.frame = CGRectMake(0, 0, 1024, 600);
-        
+//        mapView.frame = CGRectMake(0, 0, 1024, 748);
+    mapView.frame =CGRectMake(1, 1, 278, 178);
         mapView.mapType = MKMapTypeStandard;
         mapView.delegate = self;
         mapView.userInteractionEnabled = YES;
-        
+  
         MKCoordinateSpan mySpan;
-        mySpan.latitudeDelta = 0.1;
-        mySpan.longitudeDelta = 0.1;
+        mySpan.latitudeDelta = 4.51090f;
+        mySpan.longitudeDelta = 4.51090f;
         
         myRegion.span = mySpan;
         myRegion.center = myLocation;
@@ -184,27 +182,28 @@ int showMap = 0;
         myGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:myLocation];
         myGeocoder.delegate = self;
         [myGeocoder start];
+        [myGeocoder release];
         myRegion = [mapView regionThatFits:myRegion];
         [mapView setRegion:myRegion animated:TRUE];
         
         [self.view addSubview:mapView];
-        [self.view insertSubview:imaagemap aboveSubview:mapView];
-        [self.view insertSubview:mapBtu aboveSubview:imaagemap];
+        //        [self.view insertSubview:imaagemap aboveSubview:mapView];
+        //        [self.view insertSubview:mapBtu aboveSubview:imaagemap];
         
-        CGPoint userPt = [mapView convertCoordinate:myLocation toPointToView:mapView];
+        //        CGPoint userPt = [mapView convertCoordinate:myLocation toPointToView:mapView];
         
-        [mapBtu setImage:[UIImage imageNamed:@"btn-wenzi.png"] forState:UIControlStateNormal];
-        imaagemap.frame =CGRectMake(0, 0, 1024,600);
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.60f]; 
-        imaagemap.frame = CGRectMake(userPt.x, userPt.y, 0, 0);        
-        [UIView commitAnimations];
+        //        [mapBtu setImage:[UIImage imageNamed:@"btn-wenzi.png"] forState:UIControlStateNormal];
+        //        imaagemap.frame =CGRectMake(0, 0, 1024,748);
+        //        [UIView beginAnimations:nil context:NULL];
+        //        [UIView setAnimationDuration:0.60f]; 
+        //        imaagemap.frame = CGRectMake(userPt.x, userPt.y, 0, 0);        
+        //        [UIView commitAnimations];
         
         
-
         
-        [self initMapView];
-    }
+//        
+//        [self initMapView];
+//    }
     
 }
 

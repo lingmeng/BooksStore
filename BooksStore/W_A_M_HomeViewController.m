@@ -60,9 +60,9 @@ leftView.layer.borderColor=[[UIColor grayColor] CGColor];
 @synthesize player;
 @synthesize listbtuname;
 
-NSInteger Articlecurrentpage ;
-//NSInteger ArticleOfPages =0;
-NSInteger kNumberOfPages =0;
+NSInteger Articlecurrentpage=0 ;
+
+NSInteger kNumberOfArticle =0;
 
 BOOL letter_hidden = 0 ;
 BOOL map_hidden = 0;
@@ -97,7 +97,7 @@ NSString *path;
 -(void)removeLastContentWithIndex:(NSInteger)page {
     if (page < 1)
         return;
-    if (page >= kNumberOfPages)
+    if (page >= kNumberOfArticle)
         return;
     W_A_M_PageScrollView *lastView = (W_A_M_PageScrollView *)[viewControllers objectAtIndex:page];
     if ((NSNull *)lastView != [NSNull null]) {
@@ -112,12 +112,12 @@ NSString *path;
      int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     currentpage = page;
     if (scrollView == listsv) {
-        listsv.contentSize = CGSizeMake((186 * ArticleOfPages + 66), 160);
+        listsv.contentSize = CGSizeMake((186 * kNumberOfArticle + 66), 160);
     }else
     {
-        listsv.contentSize = CGSizeMake((186 * ArticleOfPages + 66 +429), 160);
+        listsv.contentSize = CGSizeMake((186 * kNumberOfArticle + 66 +429), 160);
         [listsv scrollRectToVisible:CGRectMake(532.0+(186*(page))-1024+93,0,1024.0, 160.0) animated:YES];
-        for (int i=0; i<ArticleOfPages; i++) {
+        for (int i=0; i<kNumberOfArticle; i++) {
             [[[self.listbtuname objectAtIndex:i] layer] setBorderWidth:0.0F];
             [[[self.listbtuname objectAtIndex:i] layer] setBorderColor:[[UIColor greenColor] CGColor]];
             if (page== i) {
@@ -138,7 +138,7 @@ NSString *path;
 - (void)loadScrollViewWithPage:(int)page{
     if (page < 1)
         return;
-    if (page >= kNumberOfPages)
+    if (page >= kNumberOfArticle)
         return;
 
     W_A_M_PageScrollView *controller = [viewControllers objectAtIndex:page];
@@ -195,8 +195,8 @@ NSString *path;
     NSPredicate *articlepredicate = [NSPredicate predicateWithFormat:@"Id IN %@",[NSArray arrayWithArray:self.mtalist]];
     self.articleslist=[self retrieveDataWithEntityName:@"Article" fetchLimit:-1 predicate:articlepredicate orderField:nil isAscending:NO inManagedObjectContext:self.managedObjectContext];
     NSLog(@"articles size count navimage %d",[self.articleslist count]);
-    kNumberOfPages=[self.articleslist count];
-    ArticleOfPages=kNumberOfPages;
+    kNumberOfArticle=[self.articleslist count];
+   
     NSPredicate *pagepredicate = [NSPredicate predicateWithFormat:@"ArticleId IN %@",self.mtalist];
     
     //一组articleid，显示页面
@@ -224,10 +224,12 @@ NSString *path;
         [self.contentList addObject:articledoc]; 
     
     }
+    //解析热点报文组装翻页热点
     
     
     
-    articleScrollView.contentSize = CGSizeMake(1024* kNumberOfPages,748 );
+    
+    articleScrollView.contentSize = CGSizeMake(1024* kNumberOfArticle,748 );
     articleScrollView.backgroundColor = [UIColor blackColor];
     articleScrollView.pagingEnabled = YES;
     articleScrollView.showsHorizontalScrollIndicator = NO;
@@ -263,7 +265,7 @@ NSString *path;
     
     
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
-    for (unsigned i = 0; i < kNumberOfPages; i++)
+    for (unsigned i = 0; i < kNumberOfArticle; i++)
     {
         [controllers addObject:[NSNull null]];
     }
@@ -283,24 +285,7 @@ NSString *path;
     [self.articleScrollView addSubview:imageView1];
     [imageView1 release];
     
-    /////////编辑版权页面
-    //    editeView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bjbg.png"]];
-    //    editeView.frame = CGRectMake(1024, 0, 1024, 748);
-    //    [articleScrollView addSubview:editeView];
-    //    editesv.contentSize = CGSizeMake(1024, 2041);
-    //    UIImageView *editeimage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1024, 2041)];
-    //    editeimage.image = [UIImage imageNamed:@"文字.png"];
-    //    [editesv addSubview:editeimage];
-    //    [editeimage release];
-    
-    
-    
     [self loadScrollViewWithPage:1];
-    
-  
-    // [articleScrollView release];
-    
-    
     
      [self.view insertSubview:buttonView aboveSubview:articleScrollView];
      [buttonView addSubview:infobtu];
@@ -321,7 +306,7 @@ NSString *path;
      detailView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 37.0f, detailViewWidth, detailViewHeight)];
      detailView.userInteractionEnabled = YES;
      detailInfoView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 1.0f, detailViewWidth, detailViewHeight)];
-     detailInfoView.backgroundColor = [UIColor clearColor];
+     detailInfoView.backgroundColor = [UIColor blackColor];
      detailInfoView.userInteractionEnabled = YES;
      
      
@@ -333,7 +318,7 @@ NSString *path;
      [self.view addGestureRecognizer:singleTap];
      [homebtn addTarget:self.parentViewController action:@selector(switchme) forControlEvents:UIControlEventTouchUpInside];
      
-    // kNumberOfPages = 0;
+   
 
 }
 
@@ -368,7 +353,7 @@ int showItems=0;
     
     return YES;
 }
-
+//阅读页面的隐藏显示 
 -(void)showItem:(UITouch *)touch{
     if (showItems==1) {
         if (listClicked) {
@@ -439,12 +424,16 @@ int showItems=0;
     self.articleslist= nil; 
     self.pageslist= nil;
 }
+#pragma mark- hotpointmethods
 /*infoClicked
  mapClicked
  frameClicked*/
 int playbtushow = 0;
 - (IBAction)MoviePlayCilcked:(id)sender
 { 
+    //根据按钮的id判断播放哪种视频。此id必须所有杂志唯一 根据此热点id查找list
+    
+    
     NSString *url = [[NSBundle mainBundle] pathForResource:@"02movie" ofType:@"mov"];
     //NSString *moviePath = [[NSBundle mainBundle] pathForResource:@"cyborg" ofType:@"m4v"];
 	self.player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:url]];
@@ -494,6 +483,7 @@ int playbtushow = 0;
     //    [self playmovie];
     
 }
+
 //文本信息按纽事件
 - (IBAction)InfobuttonCilcked:(id)sender
 {
@@ -859,6 +849,7 @@ int playbtushow = 0;
     }
    
 }
+#pragma mark- toolbarmethods
 //向前一页按纽事件
 - (IBAction)forwardPage:(id)sender{
     if (currentpage>0) {
@@ -870,7 +861,7 @@ int playbtushow = 0;
         [self removeLastContentWithIndex:currentpage+2];
         //[self listView:currentpage];
         [self loadScrollViewWithPage:currentpage];
-        for (int i=0; i<ArticleOfPages; i++) {
+        for (int i=0; i<kNumberOfArticle; i++) {
             [[[self.listbtuname objectAtIndex:i] layer] setBorderWidth:0.0F];
             [[[self.listbtuname objectAtIndex:i] layer] setBorderColor:[[UIColor greenColor] CGColor]];
             if (currentpage== i) {
@@ -882,18 +873,18 @@ int playbtushow = 0;
 }
 //向后一页按纽事件
 - (IBAction)backwardPage:(id)sender{
-    if (currentpage < ArticleOfPages) {
+    if (currentpage < kNumberOfArticle) {
         
         [articleScrollView scrollRectToVisible:CGRectMake(1024*(currentpage + 1),0,1024.0, 768.0) animated:YES];
         currentpage = currentpage +1 ;
-        if (currentpage == ArticleOfPages) {
+        if (currentpage == kNumberOfArticle) {
             
         }else
         {
             [self loadScrollViewWithPage:currentpage];
-            listsv.contentSize = CGSizeMake((186 * ArticleOfPages + 66 +429), 160);
+            listsv.contentSize = CGSizeMake((186 * kNumberOfArticle + 66 +429), 160);
             [listsv scrollRectToVisible:CGRectMake(532.0+(186*currentpage)-1024+93,0,1024.0, 160.0) animated:YES];
-            for (int i=0; i<ArticleOfPages; i++) {
+            for (int i=0; i<kNumberOfArticle; i++) {
                 [[[self.listbtuname objectAtIndex:i] layer] setBorderWidth:0.0F];
                 [[[self.listbtuname objectAtIndex:i] layer] setBorderColor:[[UIColor greenColor] CGColor]];
                 if (currentpage== i) {
@@ -922,19 +913,22 @@ int playbtushow = 0;
         {
             leftbtu.hidden = NO;
         }
-        if (Articlecurrentpage == 30) {
+        
+        if (Articlecurrentpage == kNumberOfArticle-1) {
             
             rightbtu.hidden = YES;
         }else
         {
             rightbtu.hidden = NO;
         }
+        
+        
         if (Articlecurrentpage>0) {
             buttonView.hidden = NO;
             infobtu.hidden = NO;
-
+            //判断热点按钮
             if (Articlecurrentpage==2||Articlecurrentpage==6||Articlecurrentpage==11||Articlecurrentpage==21||Articlecurrentpage==26) {
-                framebtu.hidden = YES;
+                framebtu.hidden = YES;//scrollviewbt
                 infobtu.frame = CGRectMake(126, 0, 38, 37);
                 frameClickedHidden = 1;
             }else
@@ -1089,7 +1083,7 @@ int playbtushow = 0;
     if (listsv==nil||detailInfoView==nil) {
         listsv = [[BaseUIScrollView alloc] init];
         listsv.frame = CGRectMake(0, 0, 1024, 177);
-        listsv.contentSize = CGSizeMake((186 * ArticleOfPages + 66), 177);
+        listsv.contentSize = CGSizeMake((186 * kNumberOfArticle + 66), 177);
         listsv.backgroundColor = [UIColor clearColor];
         listsv.pagingEnabled = NO;
         listsv.showsHorizontalScrollIndicator = YES;
@@ -1104,15 +1098,7 @@ int playbtushow = 0;
         listsv.alwaysBounceVertical = NO;
         listbtuname = [[NSMutableArray alloc] init];
         for (int i = 0; i<[self.articleslist count]; i++) {
-            
-           
             Article *article=(Article *)[self.articleslist objectAtIndex:i];
-           // NSArray *imageName = [NSArray arrayWithObjects:@"fengmianxiao",@"xt_1_1",@"xt_2_1",@"xt_3_1",@"xt_4_1",@"xt_5_1",@"xt_6_1",@"xt_7_1",@"xt_8_1",@"xt_9_1",@"xt_10_1",@"xt_11_1",@"xt_12_1",@"xt_13_1",@"xt_14_1",@"xt_15_1",@"xt_16_1",@"xt_17_1",@"xt_18_1",@"xt_19_1",@"xt_20_1",@"xt_21_1",@"xt_22_1",@"xt_23_1",@"xt_24_1",@"xt_25_1",@"xt_26_1",@"xt_27_1",@"xt_28_1",@"xt_29_1",@"xt_30_1", nil];
-            NSArray *titleName = [NSArray arrayWithObjects:@"世界建筑导报",@"祈祷峰山地旅馆",@"祈祷峰露营基地",@"菲斯亚吉图书馆",@"2010年上海世博会挪威馆 ",@"Sølvberg 的两栋住宅",@"Bergelandsgate 住宅楼",@"弗莱克菲尤尔文化大楼",@"Fløien 体验和探索中心",@"地质公园",@"B-营住宅",@"住宅综合体",@"斯维德鲁普崛起住宅项目",@"比耶斯泰兹崛起住宅项目",@"Rundeskogen 住宅项目",@"GAUSELBAKKEN 住宅项目",@"Skadbergbakken 住宅项目",@"Haugesundsgate 公寓          项目",@"Kjœrberget 住宅总体规划，B1区和B2区",@"Paradisveien 住宅",@"Hestnes 别墅",@"独栋家庭住宅",@"坡地别墅",@"旧教堂住宅改造",@"STIM 餐厅",@"凡恩面包屋",@"能量宾馆",@"办公室与温室",@"MOSVANGEN 学生公寓",@"裸露花园",@"Ratatosk 游乐设施",nil];
-            
-            if (TempcurrentPage<4) {
-                
-            }
             CGRect labFrame = CGRectMake(33+(166+20)*i, 5, 166, 20);
             CGRect imageFrame = CGRectMake(33+(166+20)*i, 30, 166, 126);
             CGRect labNumber = CGRectMake(33+(166+20)*i, 160, 166, 16);
@@ -1122,16 +1108,14 @@ int playbtushow = 0;
             [listViewbtu release];
             [listViewbtu addTarget:self action:@selector(PageTranView:) forControlEvents:UIControlEventTouchUpInside];
             numberlab = [[UILabel alloc] initWithFrame:labFrame];
+            
+            
             UILabel *number = [[UILabel alloc] initWithFrame:labNumber];
-            //NSString *path = [[NSBundle mainBundle] pathForResource:[imageName objectAtIndex:i] ofType:@"jpg"];self.articleslist
             NSString *path = [[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches/BookContent/Book1/sjjzdb/134ch/small/"] stringByAppendingPathComponent:article.ContentBgImage]; 
-            //[NSString stringWithFormat:@"%@.jpg",[imageName objectAtIndex:i]];
-            //NSLog(@"path: %@",path);
-           
-            //UIImage *  myImage = [[UIImage alloc] initWithContentsOfFile:path];
+            numberlab.text = article.Desc;   //[titleName objectAtIndex:i]; 
+            
             UIImage *myImage = [UIImage imageWithContentsOfFile:path];
             
-            numberlab.text = [titleName objectAtIndex:i]; 
             numberlab.font = [UIFont systemFontOfSize:15];
             numberlab.backgroundColor = [UIColor clearColor];
             numberlab.textColor = [UIColor whiteColor];
@@ -1154,7 +1138,6 @@ int playbtushow = 0;
             [listsv addSubview:numberlab];
             [listsv addSubview:number];
             [listsv addSubview:listViewbtu];
-//            [myImage release];
             [number release];
             [numberlab release];
         }
@@ -1168,7 +1151,7 @@ int playbtushow = 0;
     }
     if (currentpage>=2) {
         if (currentpage>=27) {
-            listsv.contentSize = CGSizeMake((186 * ArticleOfPages + 66 + 429), 160);
+            listsv.contentSize = CGSizeMake((186 * kNumberOfArticle + 66 + 429), 160);
         }
         [listsv scrollRectToVisible:CGRectMake(532.0+(186*currentpage)-1024+93,0,1024.0, 160.0) animated:YES];
     }
@@ -1184,7 +1167,7 @@ int list_frame ;
     UIButton *listViewbutton = (UIButton *)sender;
         NSLog(@"ÅÅÅÅÅÅÅ%i",listViewbutton.tag);
 
-    for (int i=0; i<ArticleOfPages; i++) {
+    for (int i=0; i<kNumberOfArticle; i++) {
         [[[self.listbtuname objectAtIndex:i] layer] setBorderWidth:0.0F];
         [[[self.listbtuname objectAtIndex:i] layer] setBorderColor:[[UIColor greenColor] CGColor]];
         if (listViewbutton.tag == 40000 +i) {
@@ -1193,7 +1176,7 @@ int list_frame ;
             [self loadScrollViewWithPage:i];
 //            [self loadScrollViewWithPage:i+1];
             list_frame = i;
-            listsv.contentSize = CGSizeMake((186 * ArticleOfPages + 66 +429), 160);
+            listsv.contentSize = CGSizeMake((186 * kNumberOfArticle + 66 +429), 160);
             [listsv scrollRectToVisible:CGRectMake(532.0+(186*i)-1024+93,0,1024.0, 160.0) animated:YES];
             [[[self.listbtuname objectAtIndex:i] layer] setBorderWidth:1.0F];
             [[[self.listbtuname objectAtIndex:i] layer] setBorderColor:[[UIColor greenColor] CGColor]];

@@ -21,13 +21,13 @@
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    NSLog(@"ssss1");
-    if(!self.dragging)
+   // NSLog(@"ssss1");
+    /*if(!self.dragging)
     {
         [[self nextResponder] touchesBegan:touches withEvent:event];
-//        NSLog(@"touches began ssss2");
-    }
-    [super touchesBegan:touches withEvent:event];
+     //   NSLog(@"touches began ssss2");
+    }*/
+    //[super touchesBegan:touches withEvent:event];
 //    NSLog(@"MyScrollView touch Began11");
 }
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event

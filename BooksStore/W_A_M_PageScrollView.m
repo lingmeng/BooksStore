@@ -14,25 +14,11 @@
 
 @synthesize wamhomevc;
 @synthesize myPageControl;
-@synthesize imageView;
-@synthesize titleSv;
-
-@synthesize lettervc;
-@synthesize framevc;
-@synthesize mapvc;
-@synthesize listvc;
-
+@synthesize contentList;
+@synthesize verticalSv,titlePages,titlePage;
 NSInteger currentpage ;
 NSInteger kNumberOfPages ;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,24 +39,51 @@ NSInteger kNumberOfPages ;
 #define fram_letter_button_top 68
 #define fram_letter_button_left 360
 
-#define fram_top 521
-#define fram_left 1
+#define fram_top 504
+#define fram_left 9
 
-#define fram_Width 552
-#define fram_Height 226
+#define fram_Width 555
+#define fram_Height 235
+CGRect normalsize;
+CGRect maxsize;
+
+/*
+- (id)PagesLoadView:(int)currentPage
+{
+    self = [super initWithNibName:@"W_A_M_PageScrollView" bundle:[NSBundle mainBundle]];
+    if (self) {
+        // Custom initialization
+        titlePages = currentPage;
+    }
+    return self;
+}*/
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.frame = CGRectMake(0, 0, 1024, 748);
+    titlePage = [self.contentList objectAtIndex:titlePages];
+   
+    NSString * Pages = [titlePage valueForKey:@"Pages"];//得到某一篇文章有多少页
+    
+    
+    //文章的页码
+    totalPages = [Pages intValue];
+    
+    NSMutableArray *controllers = [[NSMutableArray alloc] init];
+    for (unsigned i = 0; i < totalPages; i++)
+    {
+        [controllers addObject:[NSNull null]];
+    }
+    self.verticalSv = controllers;//verticalSv 纵向列表数量
+    [controllers release];
+    
+    
     // Do any additional setup after loading the view from its nib.
-    
-    kNumberOfPages = 5;
-    
-    backsv.frame = CGRectMake(0, 0, 1024, 748);
-    
-    backsv.contentSize = CGSizeMake(0,748 * kNumberOfPages);
-    backsv.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+ 
+   //上下滚动，某文章的各个页
+    backsv.contentSize = CGSizeMake(0,748 * totalPages);
+    backsv.backgroundColor = [UIColor blackColor];
     backsv.pagingEnabled = YES;
     backsv.showsHorizontalScrollIndicator = NO;
     backsv.showsVerticalScrollIndicator = NO;
@@ -82,61 +95,16 @@ NSInteger kNumberOfPages ;
     backsv.delaysContentTouches = NO;
     backsv.directionalLockEnabled = YES;
     backsv.alwaysBounceVertical = YES;
-    [self.view insertSubview:self.backsv belowSubview:self.myPageControl];
-    for (int i = 0; i<kNumberOfPages; i++) {
-        
-        //NSString *imageName = [NSString stringWithFormat:@"page%d.png",i+1];
-       NSMutableArray *titlePageArray = [[NSMutableArray alloc] initWithObjects:@"page1.png",@"page2.png",@"page3.png",@"page4.png",@"page5.png", nil];
-        
+    [self loadScrollViewWithVerticalPage:0];
+    [self loadScrollViewWithVerticalPage:1];
 
-        UIImage *image = [UIImage imageNamed:[titlePageArray objectAtIndex:i]];
-        NSLog(@"????????????%@",wamhomevc.titlePageArray);
-        CGRect viewFrame = CGRectMake(0, 748*i, 1024, 748);
-        imageView = [[UIImageView alloc] initWithFrame:viewFrame];
-        imageView.image = image;
-        imageView.userInteractionEnabled = YES;
-        imageView.tag = i;
-        [self.backsv addSubview:imageView]; 
-        if (i==0) {
-            //增加地图、图片切换动画 
-            mapvc = [[MapViewController alloc] init];
-            mapvc.view.frame = CGRectMake(0, 148, 1024, 600);
-            [self.backsv insertSubview:mapvc.view aboveSubview:imageView];
-            UIButton *letterBtu = [UIButton buttonWithType:UIButtonTypeCustom];
-            letterBtu.frame = CGRectMake(letter_button_left, letter_button_top, button_Width, button_Height);
-            [letterBtu setImage:[UIImage imageNamed:@"btn-wenzidakai.png"] forState:UIControlStateNormal];
-            [letterBtu addTarget:self action:@selector(addLetterView:) forControlEvents:UIControlEventTouchUpInside];
-            [letterBtu setTag:200];
-            [imageView addSubview:letterBtu];
+    [backsv release];
 
-        }
-        if (i==4) {
-            //增加结构文字层
-            UIButton *framebtu = [UIButton buttonWithType:UIButtonTypeCustom];
-            framebtu.frame = CGRectMake(fram_letter_button_left, fram_letter_button_top, button_Width, button_Height);
-            [framebtu setImage:[UIImage imageNamed:@"btn-wenzidakai.png"] forState:UIControlStateNormal];
-            [framebtu addTarget:self action:@selector(addFrameView:) forControlEvents:UIControlEventTouchUpInside];
-            [framebtu setTag:210];
-            [imageView addSubview:framebtu];
-            
-            UIViewController *frameView = [[FrameViewController alloc] init ];
-            //frameView.view.backgroundColor = [UIColor redColor];
-            frameView.view.frame = CGRectMake(fram_left,fram_top,fram_Width,fram_Height);
-            [imageView addSubview:frameView.view];
-            
-        }
-        
-        
-        
-    }
-    
+    [self PageControl:totalPages]; 
   
     
-    
-   
-   
-    [self PageControl:kNumberOfPages];
-    //[self showButtons];
+
+  
 
 }
 
@@ -151,15 +119,10 @@ NSInteger kNumberOfPages ;
 - (void) scrollViewDidScroll:(UIScrollView *)sender 
 {
     CGFloat pageHight = backsv.frame.size.height;
-    
-    
     currentpage = floor((backsv.contentOffset.y - pageHight / 2) / pageHight) + 1;
-    self.myPageControl.currentPage = currentpage;
-
-   
-        
-
-    
+    self.myPageControl.currentPage = currentpage; 
+//    [self loadScrollViewWithVerticalPage:currentpage-1];
+//    [self loadScrollViewWithVerticalPage:currentpage+1];
 }
 -(void)changePage:(id)sender{
     
@@ -177,7 +140,7 @@ NSInteger kNumberOfPages ;
 
 #define PageViewYGap   6.0
 #define PageViewToTopLeft 1005
-#define PageViewToTopDown 12
+#define PageViewToTopDown 38
 
 
 - (void)PageControl:(NSInteger)kNumberOfPages 
@@ -185,11 +148,10 @@ NSInteger kNumberOfPages ;
     if (kNumberOfPages == 0) {
         
     }
-    // NSLog(@"tell me what");
-    UIPageControl *pageControll = [[[UIPageControl alloc] initWithFrame:CGRectMake(PageViewToTopLeft, ((PageViewHeight+PageViewHeight)*kNumberOfPages-PageViewHeight), 748, PageViewWidth)] autorelease];
+   // NSLog(@"tell me what");
+    UIPageControl *pageControll =[[UIPageControl alloc] initWithFrame:CGRectMake(PageViewToTopLeft, ((PageViewHeight+PageViewHeight)*kNumberOfPages-PageViewHeight), 748, PageViewWidth)];
 	self.myPageControl = pageControll;
-    //self.myPageControl.backgroundColor = [UIColor blackColor];
-	//[self.myPageControl setBounds:CGRectMake(0, 0, 5 * (kNumberOfPages - 1) + 5, 16)];
+    [pageControll release];
 	self.myPageControl.center = CGPointMake(PageViewToTopLeft+PageViewWidth/2, self.view.frame.size.height-((PageViewHeight/2+PageViewHeight)*kNumberOfPages+PageViewToTopDown));
 	self.myPageControl.numberOfPages = kNumberOfPages;
 	[self.myPageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
@@ -197,106 +159,66 @@ NSInteger kNumberOfPages ;
     myPageControl.transform = transform;
     
 	[self.view insertSubview:self.myPageControl aboveSubview:self.backsv];
-    
+    [myPageControl release];
 }
 
 
 ////.....
+#pragma customer method
+-(void)removeLastContentWithIndex:(NSInteger)page {
+    if (page < 1)
+        return;
+    if (page >= totalPages)
+        return;
+    VerticalScrollView *lastView = (VerticalScrollView *)[verticalSv objectAtIndex:page];
+    if ((NSNull *)lastView != [NSNull null]) {
+        
+        [lastView.view removeFromSuperview];
+        [self.verticalSv replaceObjectAtIndex:page withObject:[NSNull null]];
+    } 
+}
+//
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGFloat pageHeight = scrollView.frame.size.height;
+    int page = floor((scrollView.contentOffset.y- pageHeight / 2) / pageHeight) + 1;
+    currentpage = page;
+    //.....
+    [self removeLastContentWithIndex:page-2]; 
+    [self removeLastContentWithIndex:page+2];
+    //.....
+    [self loadScrollViewWithVerticalPage:page - 1];
+    [self loadScrollViewWithVerticalPage:page];
+    [self loadScrollViewWithVerticalPage:page + 1];
+}
 
+- (void)loadScrollViewWithVerticalPage:(int)page{
+    if (page < 0)
+        return;
+    if (page >= totalPages)
+        return;
 
-
-//////.......
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)
-interfaceOrientation duration:(NSTimeInterval)duration {	
-    
-    if (interfaceOrientation == UIInterfaceOrientationPortrait||interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    VerticalScrollView *controller = [verticalSv objectAtIndex:page];
+    if ((NSNull *)controller == [NSNull null])
     {
+         controller=[[VerticalScrollView alloc] initWithNibName:@"VerticalScrollView" bundle:[NSBundle mainBundle]];
+        //controller = [[VerticalScrollView alloc]PagesLoadView:page titlePage:titlePages];
+        controller.contentList=self.contentList;
+        controller.currentPages = page;//文章内部的页
+        controller.titlePage = self.titlePages;//文章
         
+        [verticalSv replaceObjectAtIndex:page withObject:controller];
+        [controller release];
     }
-    
-    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft||interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+    if (controller.view.superview == nil)
     {
-        
-        backsv.frame = CGRectMake(0, 0, 1024, 748);
-
-
-        
-    }
-    
-    
+        CGRect frame = backsv.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 748* page;
+        controller.view.frame = frame;
+        controller.view.userInteractionEnabled = YES;
+        [backsv addSubview:controller.view];
+    } 
 }
-
-///增加文字层
-- (void)addLetterView:(id)sender
-{
-    titlebv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-    titlebv.backgroundColor = [UIColor whiteColor];//initWithPatternImage:[UIImage imageNamed:@"baidi.png"]];
-    
-    [self.view addSubview:titlebv];
-    [titlebv release];
-    UIButton *letterBtu = [UIButton buttonWithType:UIButtonTypeCustom];
-    letterBtu.frame = CGRectMake(letter_button_left, letter_button_top, button_Width, button_Height);
-    [letterBtu setImage:[UIImage imageNamed:@"btn-wenzi.png"] forState:UIControlStateNormal];
-    [letterBtu addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [letterBtu setTag:202];
-    [titlebv addSubview:letterBtu];
-    lettervc = [[LetterViewController alloc] init];
-    lettervc.view.frame = CGRectMake(0, 0, 1024, 748);
-    [titlebv insertSubview:lettervc.view belowSubview:letterBtu];
-
-    titlebv.alpha = 0;
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:1.25f];
-	titlebv.alpha = 0.8;
-	[UIView commitAnimations];
- 
-
-}
-- (void)close
-{
-    titlebv.alpha = 0.8;
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:1.25f];
-	titlebv.alpha = 0;
-	[UIView commitAnimations];
-    
-}
-- (void)addFrameView:(id)sender
-{
-
-    frameColsebtu = [UIButton buttonWithType:UIButtonTypeCustom];
-    frameColsebtu.frame = CGRectMake(fram_letter_button_left, fram_letter_button_top, button_Width, button_Height);
-    [frameColsebtu setImage:[UIImage imageNamed:@"btn-wenzi.png"] forState:UIControlStateNormal];
-    [frameColsebtu addTarget:self action:@selector(closeframe) forControlEvents:UIControlEventTouchUpInside];
-    [frameColsebtu setTag:211];
-    [self.view addSubview:frameColsebtu];
-    letterbv = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 345, 195)];
-    letterbv.backgroundColor = [[UIColor clearColor] initWithPatternImage:[UIImage imageNamed:@"heidi.png"]];
-    letterbv.center =  CGPointMake(frameColsebtu.center.x-345/2, frameColsebtu.center.y+195/2);
-    [self.view insertSubview:letterbv belowSubview:frameColsebtu];
-    
-    letterbv.alpha = 0;
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:1.25f];
-	letterbv.alpha = 1.0;
-	[UIView commitAnimations];
-    [letterbv release];
-}
-- (void)closeframe
-{
-    [frameColsebtu removeFromSuperview];
-    letterbv.alpha = 1.0;
-	[UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:1.25f];
-	letterbv.alpha = 0;
-	[UIView commitAnimations];
-}
-//- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    // Return YES for supported orientations
-//	return YES;
-//}
-
 
 
 
