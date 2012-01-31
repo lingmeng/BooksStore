@@ -125,7 +125,8 @@ typedef enum {
 	
 	float progress;
 	
-	id<MBProgressHUDDelegate> delegate;
+    __weak   id <MBProgressHUDDelegate>  delegate;
+	//id<MBProgressHUDDelegate> delegate;
 	NSString *labelText;
 	NSString *detailsLabelText;
 	float opacity;
@@ -208,7 +209,7 @@ typedef enum {
  * delegate should conform to the MBProgressHUDDelegate protocol and implement the hudWasHidden method. The delegate
  * object will not be retained.
  */
-@property (assign) id<MBProgressHUDDelegate> delegate;
+@property (weak) id<MBProgressHUDDelegate> delegate;
 
 /** 
  * An optional short message to be displayed below the activity indicator. The HUD is automatically resized to fit

@@ -110,7 +110,7 @@ int movie_play = 0;
 }
 
 -(void)unloadMovie{
-    [mover release];
+   // [mover release];
     
     [mover removeFromSuperview];
     

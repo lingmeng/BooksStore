@@ -68,14 +68,14 @@
     viewController4.managedObjectContext=context;
     viewController5.managedObjectContext=context;
     viewController6.managedObjectContext=context;
-    [viewController1 release];
+    /*[viewController1 release];
     [viewController2 release];
     [viewController3 release];
     [viewController4 release];
     [viewController5 release];
     [viewController6 release];
     //viewController1.parentViewController
-    [self.tabBarController release];
+    [self.tabBarController release];*/
     //NSLog(@"-----%f,%f",self.window.frame.size.width,self.window.frame.size.height);
     return YES;
     

@@ -82,7 +82,7 @@ NSString *path;
 
 - (void)dealloc
 {
-    [super dealloc];
+    //[super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -152,7 +152,7 @@ NSString *path;
         controller.articleslist=self.articleslist;//所有的文章，可取缩略图;
         controller.contentList=self.contentList;//字典
         [viewControllers replaceObjectAtIndex:page withObject:controller];
-        [controller release];
+        //[controller release];
     }
     if (controller.view.superview == nil)
     {
@@ -270,7 +270,7 @@ NSString *path;
         [controllers addObject:[NSNull null]];
     }
     self.viewControllers = controllers;
-    [controllers release];
+    //[controllers release];
     
     //article
     //NSLog(@"imagepath %@",imagePath);
@@ -283,7 +283,7 @@ NSString *path;
     
     [imageView1 setBackgroundColor:[UIColor redColor]];
     [self.articleScrollView addSubview:imageView1];
-    [imageView1 release];
+    //[imageView1 release];
     
     [self loadScrollViewWithPage:1];
     
@@ -535,7 +535,7 @@ int playbtushow = 0;
         [UIView setAnimationDuration:0.8f];
         titlebv.alpha = 0.8;
         [UIView commitAnimations];
-        [titlebv release];
+        //[titlebv release];
     }
 }
 //文本信息显示
@@ -566,7 +566,7 @@ int playbtushow = 0;
     infoimage.image = letterImage;
     [infosv addSubview:infoimage];
     //[infosv release];
-    [infoimage release];
+   // [infoimage release];
 }
 ///地图按纽事件
 - (IBAction)MapbuttonCilcked:(id)sender
@@ -658,7 +658,7 @@ int playbtushow = 0;
         [titlebv insertSubview:mapVc.view aboveSubview:infosv];
         //[self.view insertSubview:mapVc.view belowSubview:buttonView];
         [mapVc mapLoadView:currentpage latitude:[[latitude objectAtIndex:currentpage] floatValue]longitude:[[longitude objectAtIndex:currentpage]floatValue]];
-        [mapVc release];
+        //[mapVc release];
 
        
 //    }
@@ -845,7 +845,7 @@ int playbtushow = 0;
         frameimage.image = [UIImage imageNamed:infoImagName];
         frameimage.tag = 504;
         [framesv addSubview:frameimage];
-        [frameimage release];
+        //[frameimage release];
     }
    
 }
@@ -1105,7 +1105,7 @@ int playbtushow = 0;
             
             listViewbtu = [[UIButton alloc] initWithFrame:imageFrame];
             [self.listbtuname addObject:listViewbtu];
-            [listViewbtu release];
+           // [listViewbtu release];
             [listViewbtu addTarget:self action:@selector(PageTranView:) forControlEvents:UIControlEventTouchUpInside];
             numberlab = [[UILabel alloc] initWithFrame:labFrame];
             
@@ -1138,11 +1138,11 @@ int playbtushow = 0;
             [listsv addSubview:numberlab];
             [listsv addSubview:number];
             [listsv addSubview:listViewbtu];
-            [number release];
-            [numberlab release];
+          //  [number release];
+           // [numberlab release];
         }
         [detailInfoView addSubview:listsv];
-        [listsv release];
+        //[listsv release];
     }
 
     

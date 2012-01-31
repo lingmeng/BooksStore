@@ -76,7 +76,7 @@ CGRect maxsize;
         [controllers addObject:[NSNull null]];
     }
     self.verticalSv = controllers;//verticalSv 纵向列表数量
-    [controllers release];
+    //[controllers release];
     
     
     // Do any additional setup after loading the view from its nib.
@@ -98,7 +98,7 @@ CGRect maxsize;
     [self loadScrollViewWithVerticalPage:0];
     [self loadScrollViewWithVerticalPage:1];
 
-    [backsv release];
+    //[backsv release];
 
     [self PageControl:totalPages]; 
   
@@ -151,7 +151,7 @@ CGRect maxsize;
    // NSLog(@"tell me what");
     UIPageControl *pageControll =[[UIPageControl alloc] initWithFrame:CGRectMake(PageViewToTopLeft, ((PageViewHeight+PageViewHeight)*kNumberOfPages-PageViewHeight), 748, PageViewWidth)];
 	self.myPageControl = pageControll;
-    [pageControll release];
+    //[pageControll release];
 	self.myPageControl.center = CGPointMake(PageViewToTopLeft+PageViewWidth/2, self.view.frame.size.height-((PageViewHeight/2+PageViewHeight)*kNumberOfPages+PageViewToTopDown));
 	self.myPageControl.numberOfPages = kNumberOfPages;
 	[self.myPageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
@@ -159,7 +159,7 @@ CGRect maxsize;
     myPageControl.transform = transform;
     
 	[self.view insertSubview:self.myPageControl aboveSubview:self.backsv];
-    [myPageControl release];
+    //[myPageControl release];
 }
 
 
@@ -207,7 +207,7 @@ CGRect maxsize;
         controller.titlePage = self.titlePages;//文章
         
         [verticalSv replaceObjectAtIndex:page withObject:controller];
-        [controller release];
+        //[controller release];
     }
     if (controller.view.superview == nil)
     {

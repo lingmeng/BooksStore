@@ -240,7 +240,7 @@
 
 - (void)dealloc {
 	
-	[downButton release];
+	/*[downButton release];
 	//[pauseButton release];
     [bgiv release];
     [iv release];
@@ -252,7 +252,7 @@
 	//[imageProBgView release];
 	[downText release];
 	
-    [super dealloc];
+    [super dealloc];*/
 }
 
 

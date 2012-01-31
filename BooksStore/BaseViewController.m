@@ -174,8 +174,8 @@ bool ishidden=NO;
 -(void)dealloc{
     //[request clearDelegatesAndCancel];
     //[request release];
-    [baseurl release];
-    [super dealloc];
+    //[baseurl release];
+    //[super dealloc];
 }
 
 #pragma mark - on touch
@@ -264,7 +264,7 @@ bool flag=1;
         [uilabel setText:@"杂志列表已更新！"];
         [self showMessageAnimationatView];
         [self.view addSubview:uilabel];
-         [uilabel release];
+        // [uilabel release];
     }else if(i==NeedUpdateNothing){
         loadok=1;
         //[uilabel setText:@"杂志组和杂志列表已是最新！"];
@@ -817,7 +817,7 @@ UIActivityIndicatorView *progressInd;
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     NSError *error = [request error];
-   // NSLog(@"request err description %@",error.description);
+    NSLog(@"request err description %@",error.description);
     [progressInd stopAnimating];
     [progressInd removeFromSuperview];
     loadok=1;
@@ -850,13 +850,13 @@ UIActivityIndicatorView *progressInd;
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:orderField ascending:isAscending]; 
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil]; 
     [request setSortDescriptors:sortDescriptors]; 
-    [sortDescriptor release]; 
-    [sortDescriptors release]; 
+    //[sortDescriptor release]; 
+    //[sortDescriptors release]; 
     }
     // Execute the fetch 
     NSMutableArray *arr= [[moc executeFetchRequest:request error:&error] mutableCopy]; 
    
-    [request release];
+    //[request release];
     return arr;
     
 } 
@@ -892,7 +892,7 @@ UIActivityIndicatorView *progressInd;
         NSError *error;
         [fileMgr removeItemAtPath:filePath error:&error]; 
 	}
-	[zip release];
+	//[zip release];
 	
 }
 

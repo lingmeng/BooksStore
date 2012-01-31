@@ -35,7 +35,7 @@
     UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(x, y, HotFlagWidth, HotFlagHeight)];
     [image setImage:[UIImage imageWithContentsOfFile:hotImagePath]];
     [view insertSubview:image aboveSubview:scrollView];
-    [image release];
+   // [image release];
     
 }
 //报文存储
@@ -79,7 +79,7 @@
         CGRect bookshadowFrame;
         CGRect bookLineFrame;
         
-        Btn = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        Btn = [UIButton buttonWithType:UIButtonTypeCustom];// retain];
         
         NSString *imageName =books.MagazineCover;        // [NSString stringWithFormat:@"x%d.png",i+1];
         NSString *bgimageName = [NSString stringWithFormat:@"杂志缓冲背景.png"];
@@ -131,7 +131,7 @@
         
         [scrollView addSubview:Btn];
         
-        [Btn release];
+        //[Btn release];
         
         uiTextView=[[UILabel alloc]initWithFrame:textFrame];
         uiTextView.backgroundColor = [UIColor clearColor];
@@ -141,30 +141,30 @@
         uiTextView.textAlignment = UITextAlignmentCenter;
         uiTextView.font = [UIFont systemFontOfSize:14];
         [scrollView addSubview:uiTextView];
-        [uiTextView release];
+       // [uiTextView release];
         
         
         bookshadow = [[UIImageView alloc] initWithFrame:bookshadowFrame];
         bookshadow.image = [UIImage imageNamed:@"建筑书刊阴影_137x34.png"];
         [scrollView addSubview:bookshadow];
-        [bookshadow release];
+        //[bookshadow release];
         
         bookLine = [[UIImageView alloc] initWithFrame:bookLineFrame];
         bookLine.image = [UIImage imageNamed:@"图书横向分隔条.png"];
         //bookLine.alpha = 0.6f;
         [scrollView addSubview:bookLine];
-        [bookLine release];
+        //[bookLine release];
          
         
         CGRect btnFrame=CGRectMake(frame.origin.x,frame.origin.y+MagazineViewHeight+TextToMagazineGap+5+TextHeight+15, BtnToTextWidth, BtnToTextHeight);
-        UIButton *button = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];// retain];
         [button setTitle:@"购买" forState:UIControlStateNormal]; 
         [button setFrame:btnFrame];
         button.tag=books.MagazineId.intValue;
         [button setBackgroundColor:[UIColor clearColor]];
         [button addTarget:self action:@selector(buypressed:) forControlEvents:UIControlEventTouchUpInside];
         [scrollView addSubview:button];
-        [button release];
+       // [button release];
     }
         NSString *hotImagePath = [[NSBundle mainBundle] pathForResource:@"hot" ofType:@"png"];
         
@@ -210,7 +210,7 @@
     nextsv.frame = CGRectMake(36, 116, 780, 630);
     [self.view addSubview:nextsv];
     [self loadMagezinesNumberWithGroupId:groupid];
-    [nextsv release];
+    //[nextsv release];
 }
 //2:点击类别，载入图书列表，分n期显示
 -(void)loadMagezinesNumberWithGroupId:(int)groupid{
@@ -250,7 +250,7 @@
         CGRect textFrame; 
         CGRect bookshadowFrame;
         CGRect bookLineFrame;
-        Btn = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
+        Btn = [UIButton buttonWithType:UIButtonTypeCustom]; //retain];
         
         // [Btn setImage:[UIImage imageWithContentsOfFile:[imageNames objectAtIndex: i]] forState:UIControlStateNormal];//设置按钮图片
         
@@ -308,7 +308,7 @@
         //if (i==7) {
         
         // }
-        [Btn release];
+        //[Btn release];
         
         
         
@@ -320,18 +320,18 @@
         uiTextView.textAlignment = UITextAlignmentLeft;
         uiTextView.font = [UIFont systemFontOfSize:14];
         [nextsv addSubview:uiTextView];
-        [uiTextView release];
+        //[uiTextView release];
         
         bookshadow = [[UIImageView alloc] initWithFrame:bookshadowFrame];
         bookshadow.image = [UIImage imageNamed:@"建筑书刊阴影_137x34.png"];
         [nextsv addSubview:bookshadow];
-        [bookshadow release];
+        //[bookshadow release];
         
         bookLine = [[UIImageView alloc] initWithFrame:bookLineFrame];
         bookLine.image = [UIImage imageNamed:@"图书横向分隔条.png"];
         //bookLine.alpha = 0.6f;
         [nextsv addSubview:bookLine];
-        [bookLine release];
+        //[bookLine release];
     }
     //}
    // [self setHotFlag:3 atView:nextsv withImagePath:hotImagePath];
@@ -391,7 +391,7 @@ int singeView_hidden = 0;
                 [signeView.layer addAnimation:animation forKey:@"Push"];
                 [self loadSingeMagezinesWithId:magazineId];
                 
-                [signesv release];
+               // [signesv release];
             }
 }
 

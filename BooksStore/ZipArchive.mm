@@ -37,7 +37,7 @@
 -(void) dealloc
 {
 	[self CloseZipFile2];
-	[super dealloc];
+	//[super dealloc];
 }
 
 -(BOOL) CreateZipFile2:(NSString*) zipFile
@@ -274,8 +274,8 @@
 									 initWithCalendarIdentifier:NSGregorianCalendar];
 			
 			orgDate = [gregorian dateFromComponents:dc] ;
-			[dc release];
-			[gregorian release];
+			//[dc release];
+			//[gregorian release];
 			//}}
 			
 			
@@ -333,8 +333,8 @@
 							 initWithCalendarIdentifier:NSGregorianCalendar];
 	NSDate *date = [gregorian dateFromComponents:comps];
 	
-	[comps release];
-	[gregorian release];
+	//[comps release];
+	//[gregorian release];
 	return date;
 }
 

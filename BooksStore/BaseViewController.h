@@ -18,6 +18,7 @@
 #import "HotPoints.h"
 #import "MagazineDetails.h"
 #import "ASIHTTPRequest.h"
+
 #import "BooksStoreAppDelegate.h"
 #import "ZipArchive.h"
 #import "Reachability.h"

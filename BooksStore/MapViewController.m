@@ -128,7 +128,7 @@
 {
     
 
-    myAnnotstionView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"] autorelease];
+    myAnnotstionView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"currentloc"];// autorelease];
     // myAnnotstionView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier: annotation.title];
     myAnnotstionView.image = [UIImage imageNamed:@"ZUOBIAO.png"];
     myAnnotstionView.canShowCallout=NO;
@@ -182,7 +182,7 @@ int showMap = 0;
         myGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:myLocation];
         myGeocoder.delegate = self;
         [myGeocoder start];
-        [myGeocoder release];
+        //[myGeocoder release];
         myRegion = [mapView regionThatFits:myRegion];
         [mapView setRegion:myRegion animated:TRUE];
         

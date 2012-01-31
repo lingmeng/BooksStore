@@ -69,7 +69,7 @@ NSMutableArray *results;
 	//初始化临时文件路径
   
     [netWorkQueue addOperation:request];
-    [request release];
+    //[request release];
     //[request startAsynchronous];
     //然后维护关系
     return CommandOk;
@@ -329,7 +329,7 @@ NSMutableArray *results;
 - (void)dealloc {
 	
 	[netWorkQueue reset];
-    [super dealloc];
+    //[super dealloc];
 }
 
 @end

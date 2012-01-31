@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+
 @class ASIHTTPRequest;
 
 typedef enum _ASIAuthenticationType {

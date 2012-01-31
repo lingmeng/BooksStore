@@ -21,7 +21,8 @@
 
 @interface MyBookView : UIView <ASIProgressDelegate>{
 
-	id delegate;
+	//id delegate;
+    __weak   id   delegate;
 	int bookID;//ID
 	NSString *bookName;//book名字
 	float contentLength;//书的大小(BIT)
@@ -49,7 +50,7 @@
 @property(nonatomic ,retain)UIImageView *iv;
 @property(nonatomic ,retain)UIImageView *bgiv;
 
-@property (nonatomic,assign)id<MyBookDelegate> delegate;
+@property (weak)id<MyBookDelegate> delegate;
 
 @property (nonatomic,assign)int bookID;
 @property(nonatomic ,retain)NSString *bookName;
